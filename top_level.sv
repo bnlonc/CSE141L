@@ -84,9 +84,9 @@ module top_level(
                 .SecondOperand,
                 .ALUOp        );
 
-  assign wr_addr  = TruncatedReg?({TruncPrefix, instr[5:4]}):(instr[5:3]); 
+  assign wr_addr  = TruncatedReg?({TruncPrefix, mach_code[5:4]}):(mach_code[5:3]); 
   assign rd_addrA = ParityOp?('b000):(wr_addr);
-  assign rd_addrB = ParityOp?('b001):(instr[2:0]);
+  assign rd_addrB = ParityOp?('b001):(mach_code[2:0]);
 
   assign wr_regDat = MemToReg?(memOut):(ALUOut);
 
@@ -105,7 +105,7 @@ module top_level(
                           .ngtvOut(ngtvQ)   ,
                           .scryOut(scryQ)   );
 
-  assign datA = AbsBranch?({ 6{rd_addrA[2]}, rd_addrA[1:0] }):(datA);
+  assign datA = AbsBranch?({6{rd_addrA[2]}, rd_addrA[1:0]}):(datA);
   
   assign ALUInB = 'b00000000; 
   if(SecondOperand == 'b01)

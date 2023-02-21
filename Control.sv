@@ -30,60 +30,62 @@ always_comb begin
   SecondOperand   = 'b01;   // Source for ALU's B input. 00: all zeros, 01: second register file output, 10: instr[3:0] sign extended
   ALUOp	          = 'b0000; // y = a+0;
 
-// Choose based on the opcode  
-case(opcode) 
-  'b000: // ADD 
-    ALUOp = 'b0000; // ALU directed to add
-  'b001: // XOR
-    ALUOp = 'b0001; // ALU directed to bitwise-XOR 
-  'b010: // AND 
-    ALUOp = 'b0010; // ALU directed to bitwise-AND 
-  'b011: // LOD/STO
-    begin
-      ALUOp = 'b0001;       // ALU directed to bitwise-XOR 
-      TruncatedReg  = 'b1;  // The operation uses a truncated register address for the first operand 
-      TruncPrefix   = 'b0;  // The truncated register address should be completed with a 0 in the MSB 
-      SecondOperand = 'b00; // The second operand sent to the ALU should be 0b0000_0000
+  // Choose based on the opcode  
+  case(opcode) 
+    'b000: // ADD 
+      ALUOp = 'b0000; // ALU directed to add
+    'b001: // XOR
+      ALUOp = 'b0001; // ALU directed to bitwise-XOR 
+    'b010: // AND 
+      ALUOp = 'b0010; // ALU directed to bitwise-AND 
+    'b011: // LOD/STO
+      begin
+        ALUOp = 'b0001;       // ALU directed to bitwise-XOR 
+        TruncatedReg  = 'b1;  // The operation uses a truncated register address for the first operand 
+        TruncPrefix   = 'b0;  // The truncated register address should be completed with a 0 in the MSB 
+        SecondOperand = 'b00; // The second operand sent to the ALU should be 0b0000_0000
 
-      case(mode[3])
-        'b0: // LOD
-          MemtoReg = 'b1; 
-        'b1: // STO
-          MemWrite = 'b1; 
-          RegWrite = 'b0;
-      endcase
-    end
-  'b0100: // ADI
-    begin
-      ALUOp = 'b0000;       // ALU directed to add
-      TruncatedOp   = 'b1;  // The operation uses a truncated register address for the first operand 
-      TruncPrefix   = 'b1;  // The truncated register address should be completed with a 1 in the MSB 
-      SecondOperand = 'b10; // The second operand to the ALU is the sign-extended immediate instr[3:0]  
-    end
-  'b101: // Shift 
-    begin
-      case(mode[2:0])
-        'b000: 
-          ALUOp = 'b0100;
-        'b010: 
-          ALUOp = 'b0101; 
-        'b011: 
-          ALUOp = 'b0011; 
-        'b100: 
-          ALUOp = 'b0110; 
-        'b110: 
-          ALUOp = 'b0111; 
-      endcase
-    end
-  'b110: // Branch 
-    begin 
-      RegWrite = 'b0; 
-      AbsBranch = mode[0];
-      RelBranch = ~mode[0];
-      BranchFlag = mode[1];
-      BranchInvert = mode[2];
-    end
-endcase
+        case(mode[3])
+          'b0: // LOD
+            MemtoReg = 'b1; 
+          'b1: // STO
+            begin
+              MemWrite = 'b1; 
+              RegWrite = 'b0;
+            end
+        endcase
+      end
+    'b0100: // ADI
+      begin
+        ALUOp = 'b0000;       // ALU directed to add
+        TruncatedReg  = 'b1;  // The operation uses a truncated register address for the first operand 
+        TruncPrefix   = 'b1;  // The truncated register address should be completed with a 1 in the MSB 
+        SecondOperand = 'b10; // The second operand to the ALU is the sign-extended immediate instr[3:0]  
+      end
+    'b101: // Shift 
+      begin
+        case(mode[2:0])
+          'b000: 
+            ALUOp = 'b0100;
+          'b010: 
+            ALUOp = 'b0101; 
+          'b011: 
+            ALUOp = 'b0011; 
+          'b100: 
+            ALUOp = 'b0110; 
+          'b110: 
+            ALUOp = 'b0111; 
+        endcase
+      end
+    'b110: // Branch 
+      begin 
+        RegWrite = 'b0; 
+        AbsBranch = mode[0];
+        RelBranch = ~mode[0];
+        BranchFlag = mode[1];
+        BranchInvert = mode[2];
+      end
+  endcase
 
 end
 	
