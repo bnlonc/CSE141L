@@ -1,96 +1,131 @@
 // sample top level design
 module top_level(
-  input        clk, reset, req, 
-  output logic done);
-  parameter D = 12,             // program counter width
-    A = 3;             		  // ALU command bit width
-  wire[D-1:0] target, 			  // jump 
-              prog_ctr;
+  input         clk   , 
+                reset , 
+                req   , 
+  output logic  done  );
+
+  parameter   D = 12,         // program counter width
+              A = 4;          // ALU command bit width
+
+  // To the PC 
+  wire[D-1:0] target,         // jump target (immediate or relative distance)
+              prog_ctr;       // from PC to +4 adder back into PC 
+
+  // To the register file 
   wire        RegWrite;
-  wire[7:0]   datA,datB,		  // from RegFile
-              muxB, 
-			  rslt,               // alu output
-              immed;
-  logic sc_in,   				  // shift/carry out from/to ALU
-   		pariQ,              	  // registered parity flag from ALU
-		zeroQ;                    // registered zero flag from ALU 
-  wire  relj;                     // from control to PC; relative jump enable
-  wire  pari,
-        zero,
-		sc_clr,
-		sc_en,
-        MemWrite,
-        ALUSrc;		              // immediate switch
-  wire[A-1:0] alu_cmd;
-  wire[8:0]   mach_code;          // machine code
-  wire[2:0] rd_addrA, rd_adrB;    // address pointers to reg_file
-// fetch subassembly
-  PC #(.D(D)) 					  // D sets program counter width
-     pc1 (.reset            ,
-         .clk              ,
-		 .reljump_en (relj),
-		 .absjump_en (absj),
-		 .target           ,
-		 .prog_ctr          );
 
-// lookup table to facilitate jumps/branches
-  PC_LUT #(.D(D))
-    pl1 (.addr  (how_high),
-         .target          );   
+  // Outputs from register file
+  wire[7:0]   datA,
+              datB;
 
-// contains machine code
-  instr_ROM ir1(.prog_ctr,
-               .mach_code);
+  // From ALU to reg file/datamem
+  wire[7:0]   ALUOut,           // Calculation result
+              ALUInB;
+  wire        scry,             // Flag output to register file 
+              ngtv,             // Flag output to register file 
+              zero;             // Flag output to register file 
 
-// control decoder
-  Control ctl1(.instr(),
-  .RegDst  (), 
-  .Branch  (relj)  , 
-  .MemWrite , 
-  .ALUSrc   , 
-  .RegWrite   ,     
-  .MemtoReg(),
-  .ALUOp());
+  // Flags 
+  logic       scryQ,            // registered shift/carry out from/to ALU
+              ngtvQ,            // registered negative flag from ALU
+              zeroQ;            // registered zero flag from ALU 
 
-  assign rd_addrA = mach_code[2:0];
-  assign rd_addrB = mach_code[5:3];
-  assign alu_cmd  = mach_code[8:6];
+  // Control signals 
+  wire        TruncatedReg,     // 
+              TruncPrefix,      // 
+              AbsBranch,        // To the PC 
+              RelBranch,        // To the PC 
+              BranchInvert,     //
+              BranchFlag,       //
+              MemWrite,         //
+              RegWrite,         //
+              MemToReg,         //
+              ParityOp;         //
+  wire[1:0]   SecondOperand;    // 
+  wire[A-1:0] ALUOp;            // 
 
-  reg_file #(.pw(3)) rf1(.dat_in(regfile_dat),	   // loads, most ops
-              .clk         ,
-              .wr_en   (RegWrite),
-              .rd_addrA(rd_addrA),
-              .rd_addrB(rd_addrB),
-              .wr_addr (rd_addrB),      // in place operation
-              .datA_out(datA),
-              .datB_out(datB)); 
+  wire[7:0]   memOut;           // Output from data memory 
 
-  assign muxB = ALUSrc? immed : datB;
+  wire[8:0]   mach_code;        // Machine code
+  wire[2:0]   rd_addrA,         // Address pointer to reg_file
+              rd_addrB,          // Address pointer to reg_file
+              wr_addr;
 
-  alu alu1(.alu_cmd(),
-         .inA    (datA),
-		 .inB    (muxB),
-		 .sc_i   (sc),   // output from sc register
-		 .rslt       ,
-		 .sc_o   (sc_o), // input to sc register
-		 .pari  );  
+  // PC module 
+  PC #(.D(D))                   // D sets program counter width
+     pc1 (.reset              ,
+          .clk                ,
+          .reljump(RelBranch) ,
+          .absjump(AbsBranch) ,
+          .target             ,
+          .prog_ctr           );
 
-  dat_mem dm1(.dat_in(datB)  ,  // from reg_file
-             .clk           ,
-			 .wr_en  (MemWrite), // stores
-			 .addr   (datA),
-             .dat_out());
+  // Machine code module 
+  instr_ROM ir1(.prog_ctr ,
+                .mach_code);
 
-// registered flags from ALU
-  always_ff @(posedge clk) begin
-    pariQ <= pari;
-	zeroQ <= zero;
-    if(sc_clr)
-	  sc_in <= 'b0;
-    else if(sc_en)
-      sc_in <= sc_o;
-  end
+  assign opcode = mach_code[8:6]; 
+  assign mode = mach_code[3:0]; 
 
-  assign done = prog_ctr == 128;
- 
+  // control decoder
+  Control ctl1( .opcode       ,
+                .mode         ,
+                .TruncatedReg ,
+                .TruncPrefix  ,
+                .AbsBranch    ,
+                .RelBranch    ,
+                .BranchInvert ,
+                .BranchFlag   ,
+                .MemWrite     ,
+                .RegWrite     ,
+                .MemToReg     ,
+                .ParityOp     ,
+                .SecondOperand,
+                .ALUOp        );
+
+  assign wr_addr  = TruncatedReg?({TruncPrefix, instr[5:4]}):(instr[5:3]); 
+  assign rd_addrA = ParityOp?('b000):(wr_addr);
+  assign rd_addrB = ParityOp?('b001):(instr[2:0]);
+
+  assign wr_regDat = MemToReg?(memOut):(ALUOut);
+
+  reg_file #(.pw(3)) rf1( .dat_in(wr_regDat),
+                          .clk              ,
+                          .wr_en(RegWrite)  ,
+                          .zeroIn(zero)     ,
+                          .ngtvIn(ngtv)     ,
+                          .scryIn(scry)     ,
+                          .wr_addr          ,
+                          .rd_addrA         ,
+                          .rd_addrB         ,
+                          .datA_out(datA)   ,
+                          .datB_out(datB)   ,
+                          .zeroOut(zeroQ)   ,
+                          .ngtvOut(ngtvQ)   ,
+                          .scryOut(scryQ)   );
+
+  assign datA = AbsBranch?({ 6{rd_addrA[2]}, rd_addrA[1:0] }):(datA);
+  
+  assign ALUInB = 'b00000000; 
+  if(SecondOperand == 'b01)
+    assign ALUInB = datB;
+  else if(SecondOperand == 'b10)
+    assign ALUInB = {5{instr[3]}, instr[2:0]};
+  
+  alu alu1( .ALUOp        ,
+            .inA(datA)    ,
+            .inB(ALUInB)  ,
+            .sc_in(scryQ) ,
+            .rslt(ALUOut) ,
+            .sc_ot(scry)  ,
+            .ngtv         ,
+            .zero         ); 
+
+  dat_mem dm1(.dat_in(ALUOut) , 
+              .clk            , 
+              .wr_en(MemWrite),
+              .addr(datB)     ,
+              .dat_out(memOut)); 
+
 endmodule
