@@ -105,13 +105,13 @@ module top_level(
                           .ngtvOut(ngtvQ)   ,
                           .scryOut(scryQ)   );
 
-  assign datA = AbsBranch?({6{rd_addrA[2]}, rd_addrA[1:0]}):(datA);
+  assign datA = AbsBranch?({{6{rd_addrA[2]}}, rd_addrA[1:0]}):(datA);
   
   assign ALUInB = 'b00000000; 
   if(SecondOperand == 'b01)
     assign ALUInB = datB;
   else if(SecondOperand == 'b10)
-    assign ALUInB = {5{instr[3]}, instr[2:0]};
+    assign ALUInB = {{5{mach_code[3]}}, mach_code[2:0]};
   
   alu alu1( .ALUOp        ,
             .inA(datA)    ,
