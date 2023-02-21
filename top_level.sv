@@ -12,9 +12,6 @@ module top_level(
   wire[D-1:0] target,         // jump target (immediate or relative distance)
               prog_ctr;       // from PC to +4 adder back into PC 
 
-  // To the register file 
-  wire        RegWrite;
-
   // Outputs from register file
   wire[7:0]   datA,
               datB;
