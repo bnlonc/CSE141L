@@ -104,14 +104,16 @@ module top_level(
 
   assign datA = AbsBranch?({{6{rd_addrA[2]}}, rd_addrA[1:0]}):(datA);
   
-  case(SecondOperand)
-    'b01: 
-      assign ALUInB = datB;
-    'b10: 
-      assign ALUInB = {{5{mach_code[3]}}, mach_code[2:0]};
-    default:
-      assign ALUInB = 'b00000000; 
-  endcase
+  always_comb begin
+    case(SecondOperand)
+      'b01: 
+        ALUInB = datB;
+      'b10: 
+        ALUInB = {{5{mach_code[3]}}, mach_code[2:0]};
+      default:
+        ALUInB = 'b00000000; 
+    endcase
+  end
 
   alu alu1( .ALUOp        ,
             .inA(datA)    ,
