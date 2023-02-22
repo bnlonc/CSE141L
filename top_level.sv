@@ -18,6 +18,7 @@ module top_level(
 
   // From ALU to reg file/datamem
   wire[7:0]   ALUOut,           // Calculation result
+              ALUInA,
               ALUInB;
   wire        scry,             // Flag output to register file 
               ngtv,             // Flag output to register file 
@@ -106,13 +107,13 @@ module top_level(
                           .ngtvOut(ngtvQ)   ,
                           .scryOut(scryQ)   );
 
-  assign datA = AbsBranch?({{6{rd_addrA[2]}}, rd_addrA[1:0]}):(datA);
-  assign datB = SecondOperand[1]?(SecondOperand[0]?('b00000000):({{5{mach_code[3]}}, mach_code[2:0]})):(SecondOperand[0]?(datB):('b00000000));
+  assign ALUInA = AbsBranch?({{6{rd_addrA[2]}}, rd_addrA[1:0]}):(datA);
+  assign ALUInB = SecondOperand[1]?(SecondOperand[0]?('b00000000):({{5{mach_code[3]}}, mach_code[2:0]})):(SecondOperand[0]?(datB):('b00000000));
 
   assign target = {{5{datA[7]}}, datA[6:0]}
 
   alu alu1( .ALUOp        ,
-            .inA(datA)    ,
+            .inA(ALUInA)    ,
             .inB(ALUInB)  ,
             .sc_in(scryQ) ,
             .rslt(ALUOut) ,
