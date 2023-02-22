@@ -25,9 +25,9 @@ module reg_file #(parameter pw=3)(
 // reads are combinational
   assign datA_out = core[rd_addrA];
   assign datB_out = core[rd_addrB];
-  assign zeroIn = zero;
-  assign ngtvIn = ngtv;
-  assign scryIn = scry; 
+  assign zeroOut  = zero;
+  assign ngtvOut  = ngtv;
+  assign scryOut  = scry; 
 
 // writes are sequential (clocked)
   always_ff @(posedge clk)
@@ -38,7 +38,7 @@ module reg_file #(parameter pw=3)(
       scry <= scryIn; 
     end 
     else if (reset) begin
-      for (i=0; i<2**pw; i=i+1) core[i] <= 8'b00000000;
+      for (i=0; i<(2**pw); i=i+1) core[i] <= 8'b00000000;
     end
 
 endmodule
