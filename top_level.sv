@@ -109,6 +109,8 @@ module top_level(
   assign datA = AbsBranch?({{6{rd_addrA[2]}}, rd_addrA[1:0]}):(datA);
   assign datB = SecondOperand[1]?(SecondOperand[0]?('b00000000):({{5{mach_code[3]}}, mach_code[2:0]})):(SecondOperand[0]?(datB):('b00000000));
 
+  assign target = {{5{datA[7]}}, datA[6:0]}
+
   alu alu1( .ALUOp        ,
             .inA(datA)    ,
             .inB(ALUInB)  ,
@@ -123,5 +125,7 @@ module top_level(
               .wr_en(MemWrite),
               .addr(datB)     ,
               .dat_out(memOut)); 
+
+  assign done = prog_ctr == 'b111111111111;
 
 endmodule
