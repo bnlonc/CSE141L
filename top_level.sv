@@ -92,6 +92,7 @@ module top_level(
   assign wr_regDat = MemToReg?(memOut):(ALUOut);
 
   reg_file #(.pw(3)) rf1( .dat_in(wr_regDat),
+                          .reset            , 
                           .clk              ,
                           .wr_en(RegWrite)  ,
                           .zeroIn(zero)     ,
