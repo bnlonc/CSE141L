@@ -29,6 +29,8 @@ module reg_file #(parameter pw=3)(
   assign ngtvOut  = ngtv;
   assign scryOut  = scry; 
 
+  integer i;
+
 // writes are sequential (clocked)
   always_ff @(posedge clk)
     if(wr_en) begin         // anything but stores or branches 
