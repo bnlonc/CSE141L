@@ -32,17 +32,19 @@ module reg_file #(parameter pw=3)(
   integer i;
 
 // writes are sequential (clocked)
-  always_ff @(posedge clk)
+  always_ff @(posedge clk) begin
     if(wr_en) begin         // anything but stores or branches 
       core[wr_addr] <= dat_in; 
       zero <= zeroIn;
       ngtv <= ngtvIn;
       scry <= scryIn; 
     end 
-    else if (reset) begin
-      for (i=0; i<(2**pw); i=i+1) core[i] <= 8'b00000000;
-    end
 
+    if (reset) begin
+      core <= '{default:8'b0000000};
+        //  for (i=0; i<(2**pw); i=i+1) core[i] <= 8'b00000000;
+    end
+  end
 endmodule
 /*
 	  xxxx_xxxx

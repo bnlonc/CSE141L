@@ -33,7 +33,7 @@ module top_level(
               TruncPrefix,      // 
               AbsBranch,        // To the PC 
               RelBranch,        // To the PC 
-              BranchInvert,     //
+              BranchInvert,     // 
               BranchFlag,       //
               MemWrite,         //
               RegWrite,         //
@@ -92,8 +92,8 @@ module top_level(
   assign wr_regDat = MemToReg?(memOut):(ALUOut);
 
   reg_file #(.pw(3)) rf1( .dat_in(wr_regDat),
-                          .reset            , 
                           .clk              ,
+                          .reset            , 
                           .wr_en(RegWrite)  ,
                           .zeroIn(zero)     ,
                           .ngtvIn(ngtv)     ,
@@ -107,10 +107,10 @@ module top_level(
                           .ngtvOut(ngtvQ)   ,
                           .scryOut(scryQ)   );
 
-  assign ALUInA = AbsBranch?({{6{rd_addrA[2]}}, rd_addrA[1:0]}):(datA);
-  assign ALUInB = SecondOperand[1]?(SecondOperand[0]?('b00000000):({{5{mach_code[3]}}, mach_code[2:0]})):(SecondOperand[0]?(datB):('b00000000));
+  assign ALUInA = AbsBranch?(8'(signed'(rd_addrA))):(datA);
+  assign ALUInB = SecondOperand[1]?(SecondOperand[0]?('b00000000):(8'(signed'(mach_code[3:0])))):(SecondOperand[0]?(datB):('b00000000));
 
-  assign target = {{5{datA[7]}}, datA[6:0]}; 
+  assign target = 12'(signed'(datA)); 
 
   alu alu1( .ALUOp        ,
             .inA(ALUInA)    ,
