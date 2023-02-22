@@ -4,6 +4,8 @@
 module PC #(parameter D=12)(
   input               reset,				// synchronous reset
                       clk,
+                      BranchFlag,
+                      BranchInvert,
 		                  reljump,      // relative jump enable
                       absjump,	    // absolute jump enable
   input       [D-1:0] target,	      // how far/where to jump
@@ -12,9 +14,9 @@ module PC #(parameter D=12)(
   always_ff @(posedge clk)
     if(reset)
       prog_ctr <= '0;
-    else if(reljump)
+    else if(reljump & (BranchFlag ^ BranchInvert))
       prog_ctr <= prog_ctr + target;
-    else if(absjump)
+    else if(absjump & (BranchFlag ^ BranchInvert))
       prog_ctr <= target;
     else
       prog_ctr <= prog_ctr + 'b1;

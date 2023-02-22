@@ -55,12 +55,14 @@ module top_level(
 	
   // PC module 
   PC #(.D(D))                   // D sets program counter width
-     pc1 (.reset              ,
-          .clk                ,
-          .reljump(RelBranch) ,
-          .absjump(AbsBranch) ,
-          .target             ,
-          .prog_ctr           );
+     pc1 (.reset                              ,
+          .clk                                ,
+          .BranchFlag(BranchFlag?ngtvQ:zeroQ) , 
+          .BranchInvert                       , 
+          .reljump(RelBranch)                 ,
+          .absjump(AbsBranch)                 ,
+          .target                             ,
+          .prog_ctr                           );
 
   // Machine code module 
   instr_ROM ir1(.prog_ctr ,
