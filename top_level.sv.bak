@@ -49,7 +49,6 @@ module top_level(
               rd_addrB,          // Address pointer to reg_file
               wr_addr;
 
-  wire[7:0] wr_regDat;
   wire[2:0] opcode; 
   wire[3:0] mode; 
 	
