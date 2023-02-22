@@ -1,2 +1,6 @@
 token.txt
 *.old
+*.mti
+*.mpf
+transcript
+work/
