@@ -2,7 +2,6 @@
 module top_level(
   input         clk   , 
                 reset , 
-                req   , 
   output logic  done  );
 
   parameter   D = 12,         // program counter width
@@ -110,7 +109,7 @@ module top_level(
   assign ALUInA = AbsBranch?({{6{rd_addrA[2]}}, rd_addrA[1:0]}):(datA);
   assign ALUInB = SecondOperand[1]?(SecondOperand[0]?('b00000000):({{5{mach_code[3]}}, mach_code[2:0]})):(SecondOperand[0]?(datB):('b00000000));
 
-  assign target = {{5{datA[7]}}, datA[6:0]}
+  assign target = {{5{datA[7]}}, datA[6:0]}; 
 
   alu alu1( .ALUOp        ,
             .inA(ALUInA)    ,
