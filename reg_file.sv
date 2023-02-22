@@ -3,6 +3,7 @@
 module reg_file #(parameter pw=3)(
   input[7:0]        dat_in,
   input             clk,
+                    reset, 
                     wr_en,    // write enable
                     zeroIn,   // input zero flag value from the ALU
                     ngtvIn,   // input negative flag value from the ALU
@@ -35,6 +36,9 @@ module reg_file #(parameter pw=3)(
       zero <= zeroIn;
       ngtv <= ngtvIn;
       scry <= scryIn; 
+    end 
+    else if (reset) begin
+      for (i=0; i<2**pw; i=i+1) core[i] <= 8'b00000000;
     end
 
 endmodule
