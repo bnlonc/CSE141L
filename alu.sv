@@ -58,7 +58,7 @@ always_comb begin
   endcase
 
   zero  = ~(|rslt);
-  ngtv   = rslt[0];
+  ngtv   = rslt[7];
   
 end
    

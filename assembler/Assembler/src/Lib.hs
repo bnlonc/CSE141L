@@ -16,7 +16,7 @@ assemble instrs = intercalate "\n" (map encodeInstruction (resolveMacros (parseI
 
 -- Convert the long, \n-delimeted string of instructions to a list of instruction tuples 
 parseInstructionString :: String -> [Instruction]
-parseInstructionString str = map splitLine (lines str)
+parseInstructionString str = (map splitLine ((lines str) ++ ["Set r7 1", "Rotate r7 1", "Branch IfNegativeReg r7"])) 
     where 
         splitLine :: String -> Instruction 
         splitLine str = packageInstr (words str)
