@@ -12,11 +12,11 @@ type InstrWord              = String
 type Instruction            = (InstrWord, InstrWord, InstrWord, InstrWord)
 
 assemble :: String -> MachineCode
-assemble instrs = intercalate "\n" (map encodeInstruction (resolveMacros (parseInstructionString instrs)))
+assemble instrs = (intercalate "\n" (map encodeInstruction (resolveMacros (parseInstructionString instrs)))) ++ "\n101111111"
 
 -- Convert the long, \n-delimeted string of instructions to a list of instruction tuples 
 parseInstructionString :: String -> [Instruction]
-parseInstructionString str = (map splitLine ((lines str) ++ ["Set r7 1", "Rotate r7 1", "Branch IfNegativeReg r7"])) 
+parseInstructionString str = map splitLine ((lines str)) 
     where 
         splitLine :: String -> Instruction 
         splitLine str = packageInstr (words str)
