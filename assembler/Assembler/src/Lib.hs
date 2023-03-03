@@ -1,18 +1,19 @@
 module Lib
     ( 
-        assemble,
-        unrollMultiAddI
+        assemble, 
+        parseInstructionString, 
+        resolveAliases
     ) where
 
-import Data.Char(intToDigit)
-import Data.List
+import Data.Char(isDigit)
+import Data.List(intercalate)
 
 type MachineCode            = String
 type InstrWord              = String 
 type Instruction            = (InstrWord, InstrWord, InstrWord, InstrWord)
 
 assemble :: String -> MachineCode
-assemble instrs = (intercalate "\n" (map encodeInstruction (resolveMacros (parseInstructionString instrs)))) ++ "\n101111111"
+assemble instrs = (intercalate "\n" (map encodeInstruction (resolveMacros (resolveAliases (parseInstructionString instrs))))) ++ "\n101111111"
 
 -- Convert the long, \n-delimeted string of instructions to a list of instruction tuples 
 parseInstructionString :: String -> [Instruction]
@@ -25,6 +26,19 @@ parseInstructionString str = map splitLine ((lines str))
                 packageInstr (name:reg:[])              = (name, reg, "", "")
                 packageInstr (name:reg1:reg2:[])        = (name, reg1, reg2, "")
                 packageInstr (name:reg1:reg2:count:[])  = (name, reg1, reg2, count)
+
+-- Resolve register aliases 
+resolveAliases :: [Instruction] -> [Instruction]
+resolveAliases (("Alias", regNum@(r:n:[]), regName, _):rs)      | r == 'r' && isDigit n                 = resolveAliases (replace regName regNum rs)
+                                                                | otherwise                             = error ("Error in aliasing the following names: " ++ regName ++ " " ++ regNum)
+    where 
+        replace :: String -> String -> [Instruction] -> [Instruction]
+        replace regName regNum (instr@(name, reg1, reg2, count):is) | reg1 == regName                       = (name, regNum, reg2, count):(replace regName regNum is)
+                                                                    | reg2 == regName                       = (name, reg1, regNum, count):(replace regName regNum is)
+                                                                    | reg1 == regName && reg2 == regName    = (name, regNum, regNum, count):(replace regName regNum is)
+                                                                    | otherwise                             = (instr):(replace regName regNum is)
+        replace _ _ []                                                                                      = []
+resolveAliases rs                                                                                       = rs
 
 -- Traverse the list of instructions and resolve every macro to its expanded form in base assembly language 
 resolveMacros :: [Instruction] -> [Instruction]
@@ -80,6 +94,7 @@ encodeInstruction (name, reg, _, _)     | name == "LShift"  = "101" ++ (encodeRe
                                         | name == "DPRSh"   = "101" ++ (encodeRegAddr reg) ++ "110"
 encodeInstruction (name, mode, reg, _)  | name == "Branch"  = "110" ++ (encodeRegAddr reg) ++ (encodeBranchMode mode)
                                         | name == "Parity"  = "111" ++ (encodeRegAddr reg) ++ (encodeParityMode mode)
+encodeInstruction (name, reg1, reg2, count) = error ("Error encoding " ++ name ++ " " ++ reg1 ++ " " ++ reg2 ++ " " ++ count)
 
 encodeParityMode :: String -> String
 encodeParityMode "CalcP0"      = "000"
