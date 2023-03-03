@@ -129,6 +129,6 @@ module top_level(
               .addr(datB)     ,
               .dat_out(memOut)); 
 
-  assign done = prog_ctr[D-1] == 'b0;
+  assign done = prog_ctr[D-1] == 'b1;
 
 endmodule
