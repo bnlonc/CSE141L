@@ -1,36 +1,33 @@
-Add-I r5 30
-  
-  
-  
-Load rIdx rLSW
-Add-I rIdx 1
-Load rIdx rMSW
-Parity Package LSW rNewLSW
-Parity Package MSW rNewMSW
+AddI r5 7
+LShift r5 1
+AddI r5 1
+LShift r5 1
+Load r7 r0
+AddI r7 1
+Load r7 r1
+Parity PackLSW r2
+Parity PackMSW r3
 Parity CalcP8 r4
-Add rNewMSW r4
+Add r3 r4
 Parity CalcP4 r4
-Add rNewLSW r4
+Add r2 r4
 Parity CalcP2 r4
-Add rNewLSW r4
+Add r2 r4
 Parity CalcP1 r4
-Add rNewLSW r4
-  
-Copy rLSW rNewLSW
-  
-Copy rMSW rNewMSW
+Add r2 r4
+Copy r0 r2
+Copy r1 r3
 Parity CalcP0 r4
-Add  rLSW r4
-  
-Copy rStoreIdx rIdx
-Add rStoreIdx rConst29
-Store rStoreIdx rLSW
-Add-I rStoreIdx 1
-Store rStoreIdx rMSW
-Add-I rIdx 1
-Set rStoreIdx -1
-XOR  rStoreIdx rConst29
-Add rStoreIdx rIdx
-Branch IfNegativeAbs MAIN_LOOP
-Set  r7 -1
-Branch IfNegativeReg  r7
+Add r0 r4
+Copy r6 r7
+Add r6 r5
+Store r6 r0
+AddI r6 1
+Store r6 r1
+AddI r7 1
+Set r6 -1
+Xor r6 r5
+Add r6 r7
+Branch IfNegativeAbs 7
+Set r7 -1
+Branch IfNegativeReg r7

@@ -10,7 +10,7 @@ type InstrWord              = String
 type Instruction            = (InstrWord, InstrWord, InstrWord, InstrWord)
 
 assemble :: String -> MachineCode
-assemble instrs = intercalate "\n" (map encodeInstruction (resolveMacros (parseInstructions (instrs))))
+assemble instrs = intercalate "\n" (map encodeInstruction (resolveMacros (parseInstructions instrs)))
 
 parseInstructions :: String -> [Instruction]
 parseInstructions str = map splitLine (lines str)
@@ -27,78 +27,80 @@ parseInstructions str = map splitLine (lines str)
 resolveMacros :: [Instruction] -> [Instruction]
 resolveMacros []     = []; 
 resolveMacros (l:ls) = (resolveInstr l) ++ (resolveMacros ls)
-    
-resolveInstr :: Instruction -> [Instruction]
-resolveInstr (name,     arg1,  arg2,    n)  | (any (name ==) ["RShift", "LShift", "RRotate", "DPRSh", "DPLSh"]) = unroll (name, arg1, arg2, n)
-resolveInstr ("Zero",   reg,   _,       _)  = [("XOR", reg, reg, "")]
-resolveInstr ("Set",    reg,   value,   _)  = [("XOR", reg, reg, ""), ("AddI", reg, value, "")]
-resolveInstr ("Swap",   reg1,  reg2,    _)  = [("XOR", reg1, reg2, ""), ("XOR", reg2, reg1, ""), ("XOR", reg1, reg2, "")]
-resolveInstr instr                          = [instr]
+    where     
+        resolveInstr :: Instruction -> [Instruction]
+        resolveInstr (name,     arg1,  arg2,    n)  | (any (name ==) ["RShift", "LShift", "Rotate", "DPRSh", "DPLSh"]) = unrollMultiMacro (name, arg1, arg2, n)
+        resolveInstr ("Zero",   reg,   _,       _)  = [("Xor", reg, reg, "")]
+        resolveInstr ("Set",    reg,   value,   _)  = [("Xor", reg, reg, ""), ("AddI", reg, value, "")]
+        resolveInstr ("Swap",   reg1,  reg2,    _)  = [("Xor", reg1, reg2, ""), ("Xor", reg2, reg1, ""), ("Xor", reg1, reg2, "")]
+        resolveInstr ("Copy",   reg1,  reg2,    _)  = [("Xor", reg1, reg1, ""), ("Add", reg1, reg2, "")]
+        resolveInstr instr                          = [instr]
 
-unroll :: Instruction -> [Instruction]
-unroll (name, reg1, reg2, count)    | any (name ==) ["DPRSh", "DPLSh"]        = expandDoublePrecision ( take (read count::Int) (repeat (name, reg1, reg2, "")) )
+unrollMultiMacro :: Instruction -> [Instruction]
+unrollMultiMacro (name, reg1, reg2, count)    | any (name ==) ["DPRSh", "DPLSh"]    = expandDoublePrecision ( take (read count::Int) (repeat (name, reg1, reg2, "")) )
     where 
         expandDoublePrecision :: [Instruction] -> [Instruction]
         expandDoublePrecision [] = []
-        expandDoublePrecision ((name, reg1, reg2, _):ls)                      = (companionShiftName name, reg1, "", ""):(name, reg2, "", ""):(expandDoublePrecision ls)
+        expandDoublePrecision ((name, reg1, reg2, _):ls)                            = (companionShiftName name, reg1, "", ""):(name, reg2, "", ""):(expandDoublePrecision ls)
             where 
                 companionShiftName :: String -> String 
                 companionShiftName "DPRSh" = "RShift"
                 companionShiftName _       = "LShift"
-unroll (name, reg, count, _)                                                  = take (read count::Int) (repeat (name, reg, "", ""))
+unrollMultiMacro (name, reg, count, _)                                              = take (read count::Int) (repeat (name, reg, "", ""))
 
 
 encodeInstruction :: Instruction -> MachineCode
-encodeInstruction (name, reg1, reg2, _) | name == "Add"     = "000" ++ (getRegAddr reg1) ++ (getRegAddr reg2)
-                                        | name == "Xor"     = "001" ++ (getRegAddr reg1) ++ (getRegAddr reg2)
-                                        | name == "And"     = "010" ++ (getRegAddr reg1) ++ (getRegAddr reg2)
-encodeInstruction (name, reg1, reg2, _) | name == "Load"    = "011" ++ (getTruncRegAddr reg1) ++ ('0':(getRegAddr reg2))
-                                        | name == "Store"   = "011" ++ (getTruncRegAddr reg1) ++ ('1':(getRegAddr reg2))
-encodeInstruction (name, reg, imm, _)   | name == "AddI"    = "100" ++ ((getTruncRegAddr reg)) ++ (getImm imm)
-encodeInstruction (name, reg, _, _)     | name == "LShift"  = "101" ++ (getRegAddr reg) ++ "000"
-                                        | name == "RShift"  = "101" ++ (getRegAddr reg) ++ "010"
-                                        | name == "Rotate"  = "101" ++ (getRegAddr reg) ++ "011"
-                                        | name == "DPLSh"   = "101" ++ (getRegAddr reg) ++ "100"
-                                        | name == "DPRSh"   = "101" ++ (getRegAddr reg) ++ "110"
-encodeInstruction (name, mode, reg, _)  | name == "Branch"  = "110" ++ (getRegAddr reg) ++ (getBranchMode mode)
-                                        | name == "Parity"  = "111" ++ (getRegAddr reg) ++ (getParityMode mode)
+encodeInstruction (name, reg1, reg2, _) | name == "Add"     = "000" ++ (encodeRegAddr reg1) ++ (encodeRegAddr reg2)
+                                        | name == "Xor"     = "001" ++ (encodeRegAddr reg1) ++ (encodeRegAddr reg2)
+                                        | name == "And"     = "010" ++ (encodeRegAddr reg1) ++ (encodeRegAddr reg2)
+                                        | name == "Load"    = "011" ++ (encodeTruncRegAddr reg1) ++ ('0':(encodeRegAddr reg2))
+                                        | name == "Store"   = "011" ++ (encodeTruncRegAddr reg1) ++ ('1':(encodeRegAddr reg2))
+encodeInstruction (name, reg, imm, _)   | name == "AddI"    = "100" ++ (encodeTruncRegAddr reg) ++ (getFourBitBinary imm)
+encodeInstruction (name, reg, _, _)     | name == "LShift"  = "101" ++ (encodeRegAddr reg) ++ "000"
+                                        | name == "RShift"  = "101" ++ (encodeRegAddr reg) ++ "010"
+                                        | name == "Rotate"  = "101" ++ (encodeRegAddr reg) ++ "011"
+                                        | name == "DPLSh"   = "101" ++ (encodeRegAddr reg) ++ "100"
+                                        | name == "DPRSh"   = "101" ++ (encodeRegAddr reg) ++ "110"
+encodeInstruction (name, mode, reg, _)  | name == "Branch"  = "110" ++ (encodeRegAddr reg) ++ (encodeBranchMode mode)
+                                        | name == "Parity"  = "111" ++ (encodeRegAddr reg) ++ (encodeParityMode mode)
 
-getParityMode :: String -> String
-getParityMode "CalcP0"      = "000"
-getParityMode "CalcP1"      = "001"
-getParityMode "CalcP2"      = "010"
-getParityMode "CalcP4"      = "011"
-getParityMode "CalcP8"      = "100"
-getParityMode "PackLSW"     = "101"
-getParityMode "PackMSW"     = "110"
-getParityMode "UnpackLSW"   = "111"
+encodeParityMode :: String -> String
+encodeParityMode "CalcP0"      = "000"
+encodeParityMode "CalcP1"      = "001"
+encodeParityMode "CalcP2"      = "010"
+encodeParityMode "CalcP4"      = "011"
+encodeParityMode "CalcP8"      = "100"
+encodeParityMode "PackLSW"     = "101"
+encodeParityMode "PackMSW"     = "110"
+encodeParityMode "UnpackLSW"   = "111"
 
-getBranchMode :: String -> String 
-getBranchMode "IfZeroReg"           = "000"
-getBranchMode "IfZeroAbs"           = "001"
-getBranchMode "IfNegativeReg"       = "010"
-getBranchMode "IfNegativeAbs"       = "011"
-getBranchMode "IfNotZeroReg"        = "100"
-getBranchMode "IfNotZeroAbs"        = "101"
-getBranchMode "IfNotNegativeReg"    = "110"
-getBranchMode "IfNotNegativeAbs"    = "111"
+encodeBranchMode :: String -> String 
+encodeBranchMode "IfZeroReg"           = "000"
+encodeBranchMode "IfZeroAbs"           = "001"
+encodeBranchMode "IfNegativeReg"       = "010"
+encodeBranchMode "IfNegativeAbs"       = "011"
+encodeBranchMode "IfNotZeroReg"        = "100"
+encodeBranchMode "IfNotZeroAbs"        = "101"
+encodeBranchMode "IfNotNegativeReg"    = "110"
+encodeBranchMode "IfNotNegativeAbs"    = "111"
 
-getImm :: String -> String
-getImm n = getImmHelper (read n::Int)
+getFourBitBinary :: String -> String
+getFourBitBinary n = getFourBitBinaryHelper (read n::Int)
     where 
-        getImmHelper n | n >= 0 = '0':(getRegAddrHelper n)
-                       | otherwise = bin (16 + n) 
+        getFourBitBinaryHelper n    | n >= 0    = '0':(getThreeBitBinary n)
+                                    | otherwise = bin (16 + n) 
 
-getTruncRegAddr :: String -> String 
-getTruncRegAddr str = tail (getRegAddr str)
+encodeTruncRegAddr :: String -> String 
+encodeTruncRegAddr str = tail (encodeRegAddr str)
 
-getRegAddr :: String -> String 
-getRegAddr (r:s:_) = getRegAddrHelper (read [s]::Int)
-getRegAddr _       = ""
+encodeRegAddr :: String -> String 
+encodeRegAddr (r:s:[]) | r == 'r'  = getThreeBitBinary (read [s]::Int)
+encodeRegAddr (r:[])               = getThreeBitBinary (read [r]::Int)
+encodeRegAddr _                    = ""
 
-getRegAddrHelper :: Int -> String
-getRegAddrHelper n  | n <= 1 = '0':'0':(bin n)
-                    | n <= 3 = '0':(bin n)
+getThreeBitBinary :: Int -> String
+getThreeBitBinary n | n <= 1    = '0':'0':(bin n)
+                    | n <= 3    = '0':(bin n)
                     | otherwise = (bin n)
 
 bin :: Int -> String
