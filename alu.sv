@@ -48,7 +48,7 @@ always_comb begin
     4'b1100: // calculate the p8 parity value
       rslt = ^inA[7:4] ^ ^inB[2:0]; 
     4'b1101: // package the LSW
-      rslt = {inA[3:1], 2'b0 inA[0], 2'b0};
+      rslt = {inA[3:1], 2'b0, inA[0], 2'b0};
     4'b1110: // package the MSW 
       rslt = {inB[2:0], inA[7:4], 1'b0};
 
