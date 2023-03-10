@@ -91,8 +91,8 @@ encodeInstruction :: Instruction -> MachineCode
 encodeInstruction (name, reg1, reg2, _) | name == "Add"     = "000" ++ (encodeRegAddr reg1) ++ (encodeRegAddr reg2)
                                         | name == "Xor"     = "001" ++ (encodeRegAddr reg1) ++ (encodeRegAddr reg2)
                                         | name == "And"     = "010" ++ (encodeRegAddr reg1) ++ (encodeRegAddr reg2)
-                                        | name == "Load"    = "011" ++ (encodeTruncRegAddr reg1) ++ ('0':(encodeRegAddr reg2))
-                                        | name == "Store"   = "011" ++ (encodeTruncRegAddr reg1) ++ ('1':(encodeRegAddr reg2))
+                                        | name == "Load"    = "011" ++ (encodeTruncRegAddr reg2) ++ ('0':(encodeRegAddr reg1))
+                                        | name == "Store"   = "011" ++ (encodeTruncRegAddr reg2) ++ ('1':(encodeRegAddr reg1))
 encodeInstruction (name, reg, imm, _)   | name == "AddI"    = "100" ++ (encodeTruncRegAddr reg) ++ (toBinary 4 imm)
 encodeInstruction (name, reg, _, _)     | name == "LShift"  = "101" ++ (encodeRegAddr reg) ++ "000"
                                         | name == "RShift"  = "101" ++ (encodeRegAddr reg) ++ "010"
