@@ -27,8 +27,8 @@ integer     seed;
 top_level DUT(.clk, .reset, .done);            // replace "proc" with the name of your top level module
 
 initial begin
-  seed=$random
-  $display(seed)
+  seed=$random;
+  $display(seed);
   for(int i=0;i<15;i++)	begin
     d1_in[i] = $random(seed)>>4;        // create 15 messages	   '1    '0
 // copy 15 original messages into first 30 bytes of memory 
