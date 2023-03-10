@@ -55,7 +55,7 @@ always_comb begin
             end
         endcase
       end
-    'b0100: // ADI
+    'b0100: // AddI
       begin
         ALUOp = 'b0000;       // ALU directed to add
         TruncatedReg  = 'b1;  // The operation uses a truncated register address for the first operand 
@@ -84,6 +84,11 @@ always_comb begin
         RelBranch = ~mode[0];
         BranchFlag = mode[1];
         BranchInvert = mode[2];
+      end
+    'b111: // Parity
+      begin
+        parityOp = 'b1; 
+        ALUOp = {1,mode};
       end
   endcase
 
