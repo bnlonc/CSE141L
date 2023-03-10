@@ -109,10 +109,10 @@ module top_level(
                           .ngtvOut(ngtvQ)   ,
                           .scryOut(scryQ)   );
 
-  assign ALUInA = AbsBranch?(8'(signed'(rd_addrA))):(regOutA);
+  assign ALUInA = AbsBranch?(8'(unsigned'(rd_addrA))):(regOutA);
   assign ALUInB = SecondOperand[1]?(SecondOperand[0]?('b00000000):(8'(signed'(mach_code[3:0])))):(SecondOperand[0]?(regOutB):('b00000000));
 
-  assign target = 12'(signed'(ALUOut)); 
+  assign target = 12'(unsigned'(ALUOut)); 
 
   alu alu1( .ALUOp        ,
             .inA(ALUInA)    ,
