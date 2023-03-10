@@ -139,5 +139,11 @@ toBinary n str = toBinaryHelper n (read str::Int)
     where 
         toBinaryHelper :: Int -> Int -> String 
         toBinaryHelper 0    _   = ""
-        toBinaryHelper bits num | num >= (2 ^ (bits - 1)) = '1':(toBinaryHelper (bits - 1) (num - (2 ^ (bits - 1))))
-                                | otherwise              = '0':(toBinaryHelper (bits - 1) num)
+        toBinaryHelper bits num | num < 0                   = bitFlip (toBinaryHelper bits ((-1 * num) - 1))
+                                | num >= (2 ^ (bits - 1))   = '1':(toBinaryHelper (bits - 1) (num - (2 ^ (bits - 1))))
+                                | otherwise                 = '0':(toBinaryHelper (bits - 1) num)
+            where 
+                bitFlip :: String -> String 
+                bitFlip ""                  = ""
+                bitFlip (b:bs)  | b == '1'  = '0':(bitFlip bs)
+                                | b == '0'  = '1':(bitFlip bs)

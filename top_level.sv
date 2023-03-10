@@ -12,8 +12,8 @@ module top_level(
               prog_ctr;       // from PC to +4 adder back into PC 
 
   // Outputs from register file
-  wire[7:0]   datA,
-              datB;
+  wire[7:0]   regOutA,
+              regOutB;
 
   // From ALU to reg file/datamem
   wire[7:0]   ALUOut,           // Calculation result
@@ -103,16 +103,16 @@ module top_level(
                           .wr_addr          ,
                           .rd_addrA         ,
                           .rd_addrB         ,
-                          .datA_out(datA)   ,
-                          .datB_out(datB)   ,
+                          .datA_out(regOutA)   ,
+                          .datB_out(regOutB)   ,
                           .zeroOut(zeroQ)   ,
                           .ngtvOut(ngtvQ)   ,
                           .scryOut(scryQ)   );
 
-  assign ALUInA = AbsBranch?(8'(signed'(rd_addrA))):(datA);
-  assign ALUInB = SecondOperand[1]?(SecondOperand[0]?('b00000000):(8'(signed'(mach_code[3:0])))):(SecondOperand[0]?(datB):('b00000000));
+  assign ALUInA = AbsBranch?(8'(signed'(rd_addrA))):(regOutA);
+  assign ALUInB = SecondOperand[1]?(SecondOperand[0]?('b00000000):(8'(signed'(mach_code[3:0])))):(SecondOperand[0]?(regOutB):('b00000000));
 
-  assign target = 12'(signed'(datA)); 
+  assign target = 12'(signed'(ALUOut)); 
 
   alu alu1( .ALUOp        ,
             .inA(ALUInA)    ,
@@ -126,7 +126,7 @@ module top_level(
   dat_mem dm1(.dat_in(ALUOut) , 
               .clk            , 
               .wr_en(MemWrite),
-              .addr(datB)     ,
+              .addr(regOutB)     ,
               .dat_out(memOut)); 
 
   assign done = mach_code == 'b101111111;

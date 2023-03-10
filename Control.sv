@@ -80,6 +80,7 @@ always_comb begin
     'b110: // Branch 
       begin 
         RegWrite = 'b0; 
+        SecondOperand = 'b00;
         AbsBranch = mode[0];
         RelBranch = ~mode[0];
         BranchFlag = mode[1];
