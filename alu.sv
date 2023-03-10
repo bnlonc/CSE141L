@@ -25,9 +25,9 @@ always_comb begin
     4'b0011: // right rotate
       rslt = {inA[0], inA[7:1]};
     4'b0100: // left shift
-      {sc_ot,rslt} = {inA,0};
+      {sc_ot, rslt} = {inA, 1'b0};
     4'b0101: // right shift
-      {rslt,sc_ot} = {0,inA};
+      {rslt, sc_ot} = {1'b0, inA};
     4'b0110: // double-precision left shift 
       rslt = {inA[6:0], sc_in};
     4'b0111: // double-precision right shift 
@@ -48,13 +48,13 @@ always_comb begin
     4'b1100: // calculate the p8 parity value
       rslt = ^inA[7:4] ^ ^inB[2:0]; 
     4'b1101: // package the LSW
-      rslt = {inA[3:1], 0, 0, inA[0], 0, 0};
+      rslt = {inA[3:1], 2'b0 inA[0], 2'b0};
     4'b1110: // package the MSW 
-      rslt = {inB[2:0], inA[7:4], 0};
+      rslt = {inB[2:0], inA[7:4], 1'b0};
 
     // LSW unpacking assumes an encoded LSW in r0 passed through inA
     4'b1111: // unpack the LSW 
-      rslt = {inA[7],inA[6],inA[5],inA[2],inA[4],inA[3],inA[1],inA[0]};
+      rslt = {inA[7], inA[6], inA[5], inA[2], inA[4], inA[3], inA[1], inA[0]};
   endcase
 
   zero  = ~(|rslt);

@@ -87,8 +87,8 @@ always_comb begin
       end
     'b111: // Parity
       begin
-        parityOp = 'b1; 
-        ALUOp = {1,mode};
+        ParityOp = 'b1; 
+        ALUOp = {1'b1, mode};
       end
   endcase
 
