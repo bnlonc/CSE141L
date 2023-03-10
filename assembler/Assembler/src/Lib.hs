@@ -2,7 +2,8 @@ module Lib
     ( 
         assemble, 
         parseInstructionString, 
-        resolveAliases
+        resolveAliases, 
+        toBinary
     ) where
 
 import Data.Char(isDigit)
@@ -26,11 +27,12 @@ parseInstructionString str = map splitLine ((lines str))
                 packageInstr (name:reg:[])              = (name, reg, "", "")
                 packageInstr (name:reg1:reg2:[])        = (name, reg1, reg2, "")
                 packageInstr (name:reg1:reg2:count:[])  = (name, reg1, reg2, count)
+                packageInstr _                          = error ("Error in packaging instruction ")
 
 -- Resolve register aliases 
 resolveAliases :: [Instruction] -> [Instruction]
-resolveAliases (("Alias", regNum@(r:n:[]), regName, _):rs)      | r == 'r' && isDigit n                 = resolveAliases (replace regName regNum rs)
-                                                                | otherwise                             = error ("Error in aliasing the following names: " ++ regName ++ " " ++ regNum)
+resolveAliases (("Alias", regNum@(r:n:[]), regName, _):rs)      | r == 'r' && isDigit n                     = resolveAliases (replace regName regNum rs)
+                                                                | otherwise                                 = error ("Error in aliasing the following names: " ++ regName ++ " " ++ regNum)
     where 
         replace :: String -> String -> [Instruction] -> [Instruction]
         replace regName regNum (instr@(name, reg1, reg2, count):is) | reg1 == regName                       = (name, regNum, reg2, count):(replace regName regNum is)
@@ -38,7 +40,7 @@ resolveAliases (("Alias", regNum@(r:n:[]), regName, _):rs)      | r == 'r' && is
                                                                     | reg1 == regName && reg2 == regName    = (name, regNum, regNum, count):(replace regName regNum is)
                                                                     | otherwise                             = (instr):(replace regName regNum is)
         replace _ _ []                                                                                      = []
-resolveAliases rs                                                                                       = rs
+resolveAliases rs                                                                                           = rs
 
 -- Traverse the list of instructions and resolve every macro to its expanded form in base assembly language 
 resolveMacros :: [Instruction] -> [Instruction]
