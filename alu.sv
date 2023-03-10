@@ -40,11 +40,11 @@ always_comb begin
     
     // p1-4 calculations assume inA is the non-encoded LSW and inB is the non-encoded MSW 
     4'b1001: // calculate the p1 parity value
-      rslt = inA[0] ^ inA[1] ^ inA[3] ^ inA[4] ^ inA[6] ^ inB[0] ^ inB[2]; 
+      rslt = {inA[0] ^ inA[1] ^ inA[3] ^ inA[4] ^ inA[6] ^ inB[0] ^ inB[2], 1'b0}; 
     4'b1010: // calculate the p2 parity value
-      rslt = inA[0] ^ inA[2] ^ inA[3] ^ inA[5] ^ inA[6] ^ inB[1] ^ inB[2]; 
+      rslt = {inA[0] ^ inA[2] ^ inA[3] ^ inA[5] ^ inA[6] ^ inB[1] ^ inB[2], 3'b0}; 
     4'b1011: // calculate the p4 parity value
-      rslt = inA[1] ^ inA[2] ^ inA[3] ^ inA[7] ^ inB[0] ^ inB[1] ^ inB[2];
+      rslt = {inA[1] ^ inA[2] ^ inA[3] ^ inA[7] ^ inB[0] ^ inB[1] ^ inB[2], 4'b0};
     4'b1100: // calculate the p8 parity value
       rslt = ^inA[7:4] ^ ^inB[2:0]; 
     4'b1101: // package the LSW
