@@ -3,7 +3,7 @@
 module prog3_tb();
 
 bit   clk   ,                 // clock source -- drives DUT input of same name
-	  req   ;	             // req -- start next program -- drives DUT input
+	  reset   ;	             // req -- start next program -- drives DUT input
 wire  done;		    	         // ack -- from DUT -- done w/ program
 
 // program 3-specific variables
@@ -17,7 +17,7 @@ logic[  7:0] mat_str[32];      // message string parsed into bytes
 
 // your device goes here
 // explicitly list ports if your names differ from test bench's
-top_level DUT(.clk, start(req),.ack(done));	               // replace "proc" with the name of your top level module
+top_level DUT(.clk, .reset, .done);	               // replace "proc" with the name of your top level module
 
 initial begin
 // program 3
@@ -47,9 +47,9 @@ initial begin
     if(pat==str2[255:251]) cts++;
 	str2 = str2<<1;
   end        	    
-  #10ns req   = 1'b1;      // pulse request to DUT
-  #10ns req   = 1'b0;
-  wait(ack);               // wait for ack from DUT
+  #10ns reset   = 1'b1;      // pulse request to DUT
+  #10ns reset   = 1'b0;
+  wait(done);               // wait for ack from DUT
   $display();
   $display("start program 3");
   $display();

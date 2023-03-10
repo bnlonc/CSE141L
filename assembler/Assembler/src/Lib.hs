@@ -1,8 +1,7 @@
 module Lib
     ( 
         assemble, 
-        parseInstructionString, 
-        resolveAliases, 
+        resolve, 
         toBinary
     ) where
 
@@ -15,6 +14,12 @@ type Instruction            = (InstrWord, InstrWord, InstrWord, InstrWord)
 
 assemble :: String -> MachineCode
 assemble instrs = (intercalate "\n" (map encodeInstruction (resolveMacros (resolveAliases (parseInstructionString instrs))))) ++ "\n101111111"
+
+resolve :: String -> String
+resolve instrs = intercalate "\n" (map stringifyInstr (resolveMacros (resolveAliases (parseInstructionString instrs))))
+    where 
+        stringifyInstr :: Instruction -> String
+        stringifyInstr (w1, w2, w3, w4) = (w1 ++ " " ++ w2 ++ " " ++ w3 ++ " " ++ w4)
 
 -- Convert the long, \n-delimeted string of instructions to a list of instruction tuples 
 parseInstructionString :: String -> [Instruction]

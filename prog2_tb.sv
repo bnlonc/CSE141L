@@ -10,7 +10,7 @@
 module prog2_tb();
 
 bit   clk   ,                    // clock source -- drives DUT input of same name
-	  req   ;	                 // req -- start program -- drives DUT input
+	  reset   ;	                 // req -- start program -- drives DUT input
 wire  done;		    	         // ack -- from DUT -- done w/ program
 
 // program 1-specific variables
@@ -32,7 +32,7 @@ bit  [15:0] score2, case2;
 
 // your device goes here
 // explicitly list ports if your names differ from test bench's
-top_level DUT(.clk, .start, .done);	 // replace "top_level" with the name of your top level module
+top_level DUT(.clk, .reset, .done);	 // replace "top_level" with the name of your top level module
 
 initial begin
 // generate parity from random 11-bit messages 
@@ -55,8 +55,8 @@ initial begin
 	DUT.dm1.core[31+2*i] = {d2_bad[i][15:8]};
     DUT.dm1.core[30+2*i] = {d2_bad[i][ 7:0]};
   end
-  #10ns req   = 1;
-  #10ns req   = 0;
+  #10ns reset   = 1;
+  #10ns reset   = 0;
   wait(done);
   $display();
   $display("start program 2");
