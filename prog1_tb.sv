@@ -26,8 +26,10 @@ bit  [15:0] score1, case1;
 top_level DUT(.clk, .reset, .done);            // replace "proc" with the name of your top level module
 
 initial begin
+  seed=$random
+  $display(seed)
   for(int i=0;i<15;i++)	begin
-    d1_in[i] = $random>>4;        // create 15 messages	   '1    '0
+    d1_in[i] = $random(seed)>>4;        // create 15 messages	   '1    '0
 // copy 15 original messages into first 30 bytes of memory 
 // rename "dm1" and/or "core" if you used different names for these
     DUT.dm1.core[2*i+1]  = {5'b0,d1_in[i][11:9]};
