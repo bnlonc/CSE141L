@@ -9,25 +9,25 @@
 //    
 module prog2_tb();
 
-bit   clk   ,                    // clock source -- drives DUT input of same name
-	  reset   ;	                 // req -- start program -- drives DUT input
-wire  done;		    	         // ack -- from DUT -- done w/ program
+bit   clk,                        // clock source -- drives DUT input of same name
+	    reset;	                    // req -- start program -- drives DUT input
+wire  done;		    	              // ack -- from DUT -- done w/ program
 
 // program 1-specific variables
-bit  [11:1] d1_in[15];           // original messages
-logic      p0, p8, p4, p2, p1;  // Hamming block parity bits
-logic[15:0] d1_out[15];          // orig messages w/ parity inserted
+bit  [11:1] d1_in[15];            // original messages
+logic      p0, p8, p4, p2, p1;    // Hamming block parity bits
+logic[15:0] d1_out[15];           // orig messages w/ parity inserted
 
 // program 2-specific variables
-logic[11:1] d2_in[15];           // use to generate data
-logic[15:0] d2_good[15];         // d2_in w/ parity
-logic[ 3:0] flip[15];            // position of first corruption bit
-logic[ 5:0] flip2[15];           // position of possible second corruption bit
-logic[15:0] d2_bad1[15];         // possibly corrupt message w/ parity
-logic[15:0] d2_bad[15];          // possibly corrupt messages w/ parity
-logic       s16, s8, s4, s2, s1; // parity generated from data of d_bad
-logic[ 3:0] err;                 // bitwise XOR of p* and s* as 4-bit vector        
-logic[11:1] d2_corr[15];         // recovered and corrected messages
+logic[11:1] d2_in[15];            // use to generate data
+logic[15:0] d2_good[15];          // d2_in w/ parity
+logic[ 3:0] flip[15];             // position of first corruption bit
+logic[ 5:0] flip2[15];            // position of possible second corruption bit
+logic[15:0] d2_bad1[15];          // possibly corrupt message w/ parity
+logic[15:0] d2_bad[15];           // possibly corrupt messages w/ parity
+logic       s16, s8, s4, s2, s1;  // parity generated from data of d_bad
+logic[ 3:0] err;                  // bitwise XOR of p* and s* as 4-bit vector        
+logic[11:1] d2_corr[15];          // recovered and corrected messages
 bit  [15:0] score2, case2;
 
 // your device goes here

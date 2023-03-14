@@ -4,8 +4,8 @@
 module PC #(parameter D=12)(
   input               reset,				// synchronous reset
                       clk,
-                      BranchFlag,
-                      BranchInvert,
+                      BranchFlag,   // the value of the chosen flag 
+                      BranchInvert, // signal to invert the flag used to decide whether to jump 
 		                  reljump,      // relative jump enable
                       absjump,	    // absolute jump enable
   input       [D-1:0] target,	      // how far/where to jump

@@ -46,7 +46,7 @@ module top_level(
 
   wire[8:0]   mach_code;        // Machine code
   wire[2:0]   rd_addrA,         // Address pointer to reg_file
-              rd_addrB,          // Address pointer to reg_file
+              rd_addrB,         // Address pointer to reg_file
               wr_addr;
 
   wire[7:0] wr_regDat;

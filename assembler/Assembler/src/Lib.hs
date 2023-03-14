@@ -2,6 +2,14 @@ module Lib
     ( 
         assemble, 
         resolve, 
+        countInstrs, 
+        plotResLengths, 
+        parseInstructionString, 
+        resolveAliases, 
+        resolveMacros, 
+        unrollMultiAddI, 
+        unrollMultiShift, 
+        encodeInstruction, 
         toBinary
     ) where
 
@@ -20,6 +28,13 @@ resolve instrs = intercalate "\n" (map stringifyInstr (resolveMacros (resolveAli
     where 
         stringifyInstr :: Instruction -> String
         stringifyInstr (w1, w2, w3, w4) = (w1 ++ " " ++ w2 ++ " " ++ w3 ++ " " ++ w4)
+
+countInstrs :: String -> Int 
+countInstrs instrs = (foldr (\x sum -> if x == '\n' then sum+1 else sum) 0 (resolve instrs)) + 1
+
+plotResLengths :: Int -> [(Int, Int)]
+plotResLengths 0 = []
+plotResLengths n = (n, countInstrs ("AddI r3 " ++ (show n))):(plotResLengths (n - 1))
 
 -- Convert the long, \n-delimeted string of instructions to a list of instruction tuples 
 parseInstructionString :: String -> [Instruction]
@@ -55,7 +70,7 @@ resolveMacros (l:ls) = (resolveInstr l) ++ (resolveMacros ls)
         resolveInstr :: Instruction -> [Instruction]
         resolveInstr (name,     arg1,   arg2,   n)  | (any (name ==) ["RShift", "LShift", "Rotate", "DPRSh", "DPLSh"]) = unrollMultiShift (name, arg1, arg2, n)
         resolveInstr ("Zero",   reg,    _,      _)  = [("Xor", reg, reg, "")]
-        resolveInstr ("Set",    reg,    value,  _)  = [("Xor", reg, reg, ""), ("AddI", reg, value, "")]
+        resolveInstr ("Set",    reg,    value,  _)  = ("Xor", reg, reg, ""):(resolveInstr ("AddI", reg, value, ""))
         resolveInstr ("Swap",   reg1,   reg2,   _)  = [("Xor", reg1, reg2, ""), ("Xor", reg2, reg1, ""), ("Xor", reg1, reg2, "")]
         resolveInstr ("Copy",   reg1,   reg2,   _)  = [("Xor", reg1, reg1, ""), ("Add", reg1, reg2, "")]
         resolveInstr ("AddI",   reg,    value,  _)  = unrollMultiAddI reg value
