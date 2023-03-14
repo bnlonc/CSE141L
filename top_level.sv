@@ -112,7 +112,7 @@ module top_level(
   assign ALUInA = AbsBranch?(8'(unsigned'(rd_addrA))):(regOutA);
   assign ALUInB = SecondOperand[1]?(SecondOperand[0]?('b00000000):(8'(signed'(mach_code[3:0])))):(SecondOperand[0]?(regOutB):('b00000000));
 
-  assign target = 12'(unsigned'(ALUOut)); 
+  assign target = 12'(signed'(ALUOut)); 
 
   alu alu1( .ALUOp        ,
             .inA(ALUInA)    ,
