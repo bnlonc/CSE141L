@@ -34,7 +34,7 @@ module regFile #(parameter pw=3)(
 // writes are sequential (clocked)
   always_ff @(posedge clk) begin
     if(writeEnable) begin
-      core[writeAddr] <= regDataIn; 
+      core[writeAddr] <= dataIn; 
       scry <= scryIn; 
       ngtv <= ngtvIn;
       zero <= zeroIn;

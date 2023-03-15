@@ -9,11 +9,11 @@ module dataMem (
   logic[7:0] core[256];        // 2-dim array  8 wide  256 deep
 
 // reads are combinational; no enable or clock required
-  assign dat_out = core[addr];
+  assign dataOut = core[addr];
 
 // writes are sequential (clocked) -- occur on stores or pushes 
   always_ff @(posedge clk)
-    if(wr_en)				  // wr_en usually = 0; = 1 		
-      core[addr] <= dat_in; 
+    if(writeEnable)				  // wr_en usually = 0; = 1 		
+      core[addr] <= dataIn; 
 
 endmodule
