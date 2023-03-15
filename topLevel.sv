@@ -52,12 +52,12 @@ module topLevel(
   assign regReadAddrB = ctrlParityOp?('b001):(iromMachineCode[2:0]);
   assign regWriteAddr = ctrlTruncatedReg?({ctrlTruncPrefix, iromMachineCode[5:4]}):(iromMachineCode[5:3]); 
 
-  assign aluInA = AbsBranch?(8'(unsigned'(readAddrA))):(regOutA);
-  assign aluInB = SecondOperand[1]?(SecondOperand[0]?('b00000000):(8'(signed'(iromMachineCode[3:0])))):(SecondOperand[0]?(regOutB):('b00000000));
+  assign aluInA = ctrlAbsBranch?(8'(unsigned'(regReadAddrA))):(regOutA);
+  assign aluInB = ctrlSecondOperand[1]?(ctrlSecondOperand[0]?('b00000000):(8'(signed'(iromMachineCode[3:0])))):(ctrlSecondOperand[0]?(regOutB):('b00000000));
 
   assign opcode = iromMachineCode[8:6]; 
   assign mode   = iromMachineCode[3:0]; 
-  assign target = 12'(signed'(ALUOut)); 
+  assign target = 12'(signed'(aluOut)); 
 	
   assign done = iromMachineCode == 'b101111111;
 
