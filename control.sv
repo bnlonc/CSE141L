@@ -1,7 +1,7 @@
 // control decoder
 module control #(parameter  opwidth = 4)(
-  input [2:0]               opcode            ,  // opcode from the instruction, always bits 8:6
-  input [3:0]               mode              ,  // mode from the instruction, may be partially or completely irrelevant depending on opcode 
+  input [2:0]               opcode        ,  // opcode from the instruction, always bits 8:6
+  input [3:0]               mode          ,  // mode from the instruction, may be partially or completely irrelevant depending on opcode 
   output logic              TruncatedReg  ,  
                             TruncPrefix   ,  
                             AbsBranch     ,  

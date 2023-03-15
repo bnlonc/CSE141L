@@ -3,11 +3,11 @@
 module regFile #(parameter pw=3)(
   input             clk,
                     reset, 
-  input[7:0]        dataIn,
                     writeEnable,  
                     scryIn,       // input shift carry flag value from the ALU
                     ngtvIn,       // input negative flag value from the ALU
                     zeroIn,       // input zero flag value from the ALU
+  input[7:0]        dataIn,
   input[pw-1:0]     readAddrA,	  // write address pointer
                     readAddrB,	  // read address pointers
 			              writeAddr,

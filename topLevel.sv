@@ -55,9 +55,9 @@ module topLevel(
   assign aluInA = ctrlAbsBranch?(8'(unsigned'(regReadAddrA))):(regOutA);
   assign aluInB = ctrlSecondOperand[1]?(ctrlSecondOperand[0]?('b00000000):(8'(signed'(iromMachineCode[3:0])))):(ctrlSecondOperand[0]?(regOutB):('b00000000));
 
-  assign opcode = iromMachineCode[8:6]; 
-  assign mode   = iromMachineCode[3:0]; 
-  assign target = 12'(signed'(aluOut)); 
+  assign iromOpcode = iromMachineCode[8:6]; 
+  assign iromMode   = iromMachineCode[3:0]; 
+  assign pcTarget     = 12'(signed'(aluOut)); 
 	
   assign done = iromMachineCode == 'b101111111;
 
@@ -77,8 +77,8 @@ module topLevel(
   instrROM ir1( .progCtr(pcProgCtr)               ,
                 .machineCode(iromMachineCode)     );
 
-  control ctl1( .opcode                           ,
-                .mode                             ,
+  control ctl1( .opcode(iromOpcode)                           ,
+                .mode(iromMode)                             ,
                 .TruncatedReg(ctrlTruncatedReg)   ,
                 .TruncPrefix(ctrlTruncPrefix)     ,
                 .AbsBranch(ctrlAbsBranch)         ,
@@ -108,16 +108,16 @@ module topLevel(
                         .ngtvOut(flagNgtv)        ,
                         .zeroOut(flagZero)        );
 
-  alu alu1( .op(aluOp)                            ,
+  alu alu1( .op(ctrlAluOp)                        ,
             .inA(aluInA)                          ,
             .inB(aluInB)                          ,
             .scryIn(scryFlag)                     ,
-            .result(ALUOut)                       ,
+            .result(aluOut)                       ,
             .scryOut(aluScryOut)                  ,
             .ngtvOut(aluNgtvOut)                  ,
             .zeroOut(aluZeroOut)                  ); 
 
-  dataMem dm1(.dataIn(ALUOut)                     , 
+  dataMem dm1(.dataIn(aluOut)                     , 
               .clk                                , 
               .writeEnable(ctrlMemWrite)          ,
               .addr(regOutB)                      ,
