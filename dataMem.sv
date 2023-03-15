@@ -1,5 +1,5 @@
 // 8-bit wide, 256-word (byte) deep memory array
-module dat_mem (
+module dataMem (
   input[7:0]        dataIn      ,
   input             clk         ,
   input             writeEnable ,
