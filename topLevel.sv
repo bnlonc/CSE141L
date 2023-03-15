@@ -57,7 +57,7 @@ module topLevel(
 
   assign iromOpcode = iromMachineCode[8:6]; 
   assign iromMode   = iromMachineCode[3:0]; 
-  assign pcTarget     = 12'(signed'(aluOut)); 
+  assign pcTarget   = 12'(signed'(aluOut)); 
 	
   assign done = iromMachineCode == 'b101111111;
 

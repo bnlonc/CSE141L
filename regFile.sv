@@ -23,8 +23,8 @@ module regFile #(parameter pw=3)(
   logic       scry;         // shift-carry flag storage 
 
 // reads are combinational
-  assign regOutA = core[readAddrA];
-  assign regOutB = core[readAddrB];
+  assign outA = core[readAddrA];
+  assign outB = core[readAddrB];
   assign scryOut  = scry; 
   assign ngtvOut  = ngtv;
   assign zeroOut  = zero;
