@@ -24,7 +24,7 @@ integer     seed;
 // change "top_level" if you called your device something different
 // explicitly list ports if your names differ from test bench's
 // if you used any parameters, override them here
-top_level DUT(.clk, .reset, .done);            // replace "proc" with the name of your top level module
+topLevel DUT(.clk, .reset, .done);            // replace "proc" with the name of your top level module
 
 initial begin
   seed=$random;

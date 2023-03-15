@@ -17,7 +17,7 @@ logic[  7:0] mat_str[32];      // message string parsed into bytes
 
 // your device goes here
 // explicitly list ports if your names differ from test bench's
-top_level DUT(.clk, .reset, .done);	               // replace "proc" with the name of your top level module
+topLevel DUT(.clk, .reset, .done);	               // replace "proc" with the name of your top level module
 
 initial begin
 // program 3
