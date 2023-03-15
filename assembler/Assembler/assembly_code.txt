@@ -15,8 +15,21 @@ Load rIdx rLSW
 AddI rIdx 1
 Load rIdx rMSW
 AddI rIdx 1
-Add rLSWCopy rLSW
-Add rMSWCopy rMSW
+Copy rLSWCopy rLSW
+Copy rMSWCopy rMSW
+Parity UnpackLSW rLSW
+RShift rMSW 1
+DPRSh rMSW rLSW 4
+Parity CalcP4 rParity
+Zero rJump
+Add rJump rParity
+Parity CalcP2 rParity
+Add rJump rParity
+Parity CalcP1 rParity
+Add rJump rParity
+Parity CalcP8 rParity
+Copy rLSW rLSWCopy
+Copy rMSW rMSWCopy
 Set rMask -17
 And rLSW rMask
 Rotate rMask 2
@@ -26,16 +39,10 @@ And rLSW rMask
 Rotate rMask 1
 And rLSW rMask
 And rMSW rMask
-Parity CalcP8 rParity
+Add rLSW rJump
 Add rMSW rParity
-Parity CalcP4 rParity
-Add rLSW rParity
-Parity CalcP2 rParity
-Add rLSW rParity
-Parity CalcP1 rParity
-Add rLSW rParity
-Parity CalcP0 rParity
-Add rLSW rParity
+Parity CalcP0 rJump
+Add rLSW rJump
 Xor rLSW rLSWCopy
 Xor rMSW rMSWCopy
 DPRSh rLSW rParity 3
@@ -43,8 +50,8 @@ RShift rLSW 1
 DPRSh rLSW rParity 1
 DPRSh rMSW rParity 1
 RShift rParity 3
-Copy rLSW rLSWCopy
-Copy rMSW rMSWCopy
+Add rLSW rLSWCopy
+Add rMSW rMSWCopy
 Set rJump 17
 DPRSh rParity rMask 1
 Branch IfNegativeReg rJump
@@ -77,7 +84,7 @@ Set rWriteIdx -32
 Add rWriteIdx rIdx
 Store rWriteIdx rLSW
 AddI rWriteIdx 1
-Store rWriteIdx rLSW
+Store rWriteIdx rMSW
 Set rMask -29
 Add rWriteIdx rMask
-Branch IfNotZeroAbs 5
+Branch IfNotZeroAbs 5 
