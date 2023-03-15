@@ -15,7 +15,7 @@ module PC #(parameter D=12)(
 
   wire                branchCondition; 
 
-  always_comb branchCondition = (ctrlBranchFlag?flagNgtv:flagZero) ^ ctrlBranchInvert;
+  assign branchCondition = (ctrlBranchFlag?flagNgtv:flagZero) ^ ctrlBranchInvert;
 
   always_ff @(posedge clk)
     if(reset)
