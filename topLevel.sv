@@ -111,7 +111,7 @@ module topLevel(
   alu alu1( .op(ctrlAluOp)                        ,
             .inA(aluInA)                          ,
             .inB(aluInB)                          ,
-            .scryIn(scryFlag)                     ,
+            .scryIn(flagScry)                     ,
             .result(aluOut)                       ,
             .scryOut(aluScryOut)                  ,
             .ngtvOut(aluNgtvOut)                  ,
