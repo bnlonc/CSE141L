@@ -62,8 +62,10 @@ initial begin
   $display("start program 2");
   $display();
   for(int i=0; i<15; i++) begin
-    $displayb({5'b0,d2_in[i]});
-    $writeb  (DUT.dm1.core[1+2*i]);
+    $displayb("original data  %b",{5'b0,d2_in[i]});
+    $displayb("clean parity   %b",{5'b0,d2_good[i]});
+    $displayb("corrupt parity %b",{5'b0,d2_bad[i]});
+    $writeb  ("got output     %b",DUT.dm1.core[1+2*i]);
     $displayb(DUT.dm1.core[0+2*i]);
     if(flip2[i][5:4]) begin :sgl_err                           // single error scenario
       $display("single error injected, expecting MSBs of output = 2'b01");
