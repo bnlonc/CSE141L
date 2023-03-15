@@ -30,6 +30,10 @@ Add rJump rParity
 Parity CalcP8 rParity
 Copy rLSW rLSWCopy
 Copy rMSW rMSWCopy
+RShift rLSW 1
+LShift rLSW 1
+Parity CalcP0 rMask
+Add rJump rMask
 Set rMask -17
 And rLSW rMask
 Rotate rMask 2
@@ -41,8 +45,6 @@ And rLSW rMask
 And rMSW rMask
 Add rLSW rJump
 Add rMSW rParity
-Parity CalcP0 rJump
-Add rLSW rJump
 Xor rLSW rLSWCopy
 Xor rMSW rMSWCopy
 DPRSh rLSW rParity 3
@@ -64,18 +66,18 @@ Rotate rF 1
 Set rJump 22
 Branch IfNotZeroReg rJump
 Set rF 1
+Copy rFilterL rF
 Rotate rF 2
-Set rFilterL 1
 Zero rFilterM
 Set rJump 8
 AddI rParity 0
 Branch IfZeroReg rJump
 DPLSh rFilterL rFilterM 1
 AddI rParity -1
-Set rJump -10
+Set rJump -11
 Branch IfNotZeroReg rJump
-Xor rFilterL rLSW
-Xor rFilterM rMSW
+Xor rLSW rFilterL
+Xor rMSW rFilterM
 Parity UnpackLSW rLSW
 RShift rMSW 1
 DPRSh rMSW rLSW 4
