@@ -18,7 +18,6 @@ bit  [11:1] d1_in[15];           // original messages
 bit         p0, p8, p4, p2, p1;  // Hamming block parity bits
 bit  [15:0] d1_out[15];          // orig messages w/ parity inserted
 bit  [15:0] score1, case1;
-integer     seed;
 
 // your device goes here
 // change "top_level" if you called your device something different
@@ -27,10 +26,8 @@ integer     seed;
 topLevel #(.progID(1)) DUT(.clk, .reset, .done);            // replace "proc" with the name of your top level module
 
 initial begin
-  seed=$random;
-  $display(seed);
   for(int i=0;i<15;i++)	begin
-    d1_in[i] = $random(seed)>>4;        // create 15 messages	   '1    '0
+    d1_in[i] = $random()>>4;        // create 15 messages	   '1    '0
 // copy 15 original messages into first 30 bytes of memory 
 // rename "dm1" and/or "core" if you used different names for these
     DUT.dm1.core[2*i+1]  = {5'b0,d1_in[i][11:9]};
