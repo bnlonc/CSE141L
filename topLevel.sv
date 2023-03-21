@@ -1,5 +1,5 @@
 // sample top level design
-module topLevel(
+module topLevel #(parameter progID=1)(
   input         clk   , 
                 reset , 
   output logic  done  );
@@ -62,23 +62,23 @@ module topLevel(
   assign done = iromMachineCode == 'b101111111;
 
 
-  PC #(.D(D))                   // D sets program counter width
-     pc1 (.reset                                  ,
-          .clk                                    ,
-          .ctrlBranchFlag                         , 
-          .flagNgtv                               ,
-          .flagZero                               , 
-          .ctrlBranchInvert                       , 
-          .ctrlRelBranch                          ,
-          .ctrlAbsBranch                          ,
-          .target(pcTarget)                       ,
-          .progCtr(pcProgCtr)                     );
+  PC #(.D(D)) pc1 (.reset                         ,
+                   .clk                           ,
+                   .ctrlBranchFlag                , 
+                   .flagNgtv                      ,
+                   .flagZero                      , 
+                   .ctrlBranchInvert              , 
+                   .ctrlRelBranch                 ,
+                   .ctrlAbsBranch                 ,
+                   .target(pcTarget)              ,
+                   .progCtr(pcProgCtr)            );
 
-  instrROM ir1( .progCtr(pcProgCtr)               ,
-                .machineCode(iromMachineCode)     );
+  instrROM #(.progID(progID)) ir1 ( 
+             .progCtr(pcProgCtr)                  ,
+             .machineCode(iromMachineCode)        );
 
-  control ctl1( .opcode(iromOpcode)                           ,
-                .mode(iromMode)                             ,
+  control ctl1( .opcode(iromOpcode)               ,
+                .mode(iromMode)                   ,
                 .TruncatedReg(ctrlTruncatedReg)   ,
                 .TruncPrefix(ctrlTruncPrefix)     ,
                 .AbsBranch(ctrlAbsBranch)         ,
