@@ -1,0 +1,92 @@
+Alias r0 rLSW
+Alias r1 rMSW
+Alias r2 rLSWCopy
+Alias r2 rFilterL
+Alias r3 rMSWCopy
+Alias r3 rFilterM
+Alias r4 rParity
+Alias r5 rMask
+Alias r5 rF
+Alias r6 rJump
+Alias r6 rWriteIdx
+Alias r7 rIdx
+Set rIdx 30
+Load rIdx rLSW
+AddI rIdx 1
+Load rIdx rMSW
+AddI rIdx 1
+Copy rLSWCopy rLSW
+Copy rMSWCopy rMSW
+Parity UnpackLSW rLSW
+RShift rMSW 1
+DPRSh rMSW rLSW 4
+Parity CalcP4 rParity
+Zero rJump
+Add rJump rParity
+Parity CalcP2 rParity
+Add rJump rParity
+Parity CalcP1 rParity
+Add rJump rParity
+Parity CalcP8 rParity
+Copy rLSW rLSWCopy
+Copy rMSW rMSWCopy
+RShift rLSW 1
+LShift rLSW 1
+Parity CalcP0 rMask
+Add rJump rMask
+Set rMask -17
+And rLSW rMask
+Rotate rMask 2
+And rLSW rMask
+Rotate rMask 1
+And rLSW rMask
+Rotate rMask 1
+And rLSW rMask
+And rMSW rMask
+Add rLSW rJump
+Add rMSW rParity
+Xor rLSW rLSWCopy
+Xor rMSW rMSWCopy
+DPRSh rLSW rParity 3
+RShift rLSW 1
+DPRSh rLSW rParity 1
+DPRSh rMSW rParity 1
+RShift rParity 3
+Add rLSW rLSWCopy
+Add rMSW rMSWCopy
+Set rJump 17
+DPRSh rParity rMask 1
+Branch IfNegativeReg rJump
+Zero rF
+Set rJump 30
+AddI rParity 0
+Branch IfZeroReg rJump
+Set rF 1
+Rotate rF 1
+Set rJump 22
+Branch IfNotZeroReg rJump
+Set rF 1
+Copy rFilterL rF
+Rotate rF 2
+Zero rFilterM
+Set rJump 8
+AddI rParity 0
+Branch IfZeroReg rJump
+DPLSh rFilterL rFilterM 1
+AddI rParity -1
+Set rJump -11
+Branch IfNotZeroReg rJump
+Xor rLSW rFilterL
+Xor rMSW rFilterM
+Parity UnpackLSW rLSW
+RShift rMSW 1
+DPRSh rMSW rLSW 4
+Add rMSW rF
+Set rWriteIdx -32
+Add rWriteIdx rIdx
+Store rWriteIdx rLSW
+AddI rWriteIdx 1
+Store rWriteIdx rMSW
+Set rMask -29
+Add rWriteIdx rMask
+Branch IfNotZeroAbs 5 
