@@ -21,12 +21,12 @@ And rByteIdx rPattern
 Xor rPattern rByteIdx
 Copy rCompare rPattern
 Xor rCompare rData
-Set rTemp 18
+Set rTemp 19
 RShift rCompare 3
 Branch IfNotZeroReg rTemp
 AddI rCount 4
 AddI rCount 4
-Set rTemp 2
+Set rTemp 12
 AddI rByteIdx -4
 Branch IfNotNegativeReg rTemp
 AddI rCount 1
@@ -39,7 +39,7 @@ Set rTemp 1
 Rotate rTemp 1
 Add rCount rTemp
 DoubleLShift rNextData rData
-Set rTemp -69
+Set rTemp -70
 Copy rCompare rTemp
 Add rPattern rByteIdx
 Set rTemp 2

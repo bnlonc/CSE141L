@@ -49,18 +49,18 @@ parseInstructionString str = map splitLine ((lines str))
                 packageInstr (name:reg1:reg2:count:[])  = (name, reg1, reg2, count)
                 packageInstr _                          = error ("Error in packaging instruction ")
 
--- Resolve register aliases 
+-- Resolve register aliases; replace all the human-readable names like "rIndex" with machine-readable names like "r5"
 resolveAliases :: [Instruction] -> [Instruction]
-resolveAliases (("Alias", regNum@(r:n:[]), regName, _):rs)      | r == 'r' && isDigit n                     = resolveAliases (replace regName regNum rs)
-                                                                | otherwise                                 = error ("Error in aliasing the following names: " ++ regName ++ " " ++ regNum)
+resolveAliases (("Alias", regNum@(r:n:[]), regName, _):rs)      | r == 'r' && isDigit n                  = resolveAliases (replace regName regNum rs)
+                                                                | otherwise                              = error ("Error in aliasing the following names: " ++ regName ++ " " ++ regNum)
     where 
         replace :: String -> String -> [Instruction] -> [Instruction]
-        replace regName regNum (instr@(name, reg1, reg2, count):is) | reg1 == regName                       = (name, regNum, reg2, count):(replace regName regNum is)
-                                                                    | reg2 == regName                       = (name, reg1, regNum, count):(replace regName regNum is)
-                                                                    | reg1 == regName && reg2 == regName    = (name, regNum, regNum, count):(replace regName regNum is)
-                                                                    | otherwise                             = (instr):(replace regName regNum is)
-        replace _ _ []                                                                                      = []
-resolveAliases rs                                                                                           = rs
+        replace regName regNum (instr@(name, reg1, reg2, count):is) | reg1 == regName                    = (name, regNum, reg2, count):(replace regName regNum is)
+                                                                    | reg2 == regName                    = (name, reg1, regNum, count):(replace regName regNum is)
+                                                                    | reg1 == regName && reg2 == regName = (name, regNum, regNum, count):(replace regName regNum is)
+                                                                    | otherwise                          = (instr):(replace regName regNum is)
+        replace _ _ []                                                                                   = []
+resolveAliases rs                                                                                        = rs
 
 -- Traverse the list of instructions and resolve every macro to its expanded form in base assembly language 
 resolveMacros :: [Instruction] -> [Instruction]
@@ -102,10 +102,10 @@ unrollMultiShift instr@(name, reg1, reg2, count)    | any (name ==) ["DoubleRShi
                     where 
                         companionShiftName :: String -> String 
                         companionShiftName "DoubleRShift" = "RShift"
-                        companionShiftName _           = "LShift"
+                        companionShiftName _              = "LShift"
                         backingShiftName :: String -> String 
                         backingShiftName "DoubleRShift" = "DPRSh"
-                        backingShiftName _           = "DPLSh"
+                        backingShiftName _              = "DPLSh"
 unrollMultiShift (name, reg, count, _)                                           | count /= ""       = take (read count::Int) (repeat (name, reg, "", ""))
                                                                                  | otherwise         = [(name, reg, "", "")]
 
