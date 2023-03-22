@@ -26,11 +26,10 @@ RShift rCompare 3
 Branch IfNotZeroReg rTemp
 AddI rCount 4
 AddI rCount 4
-Set rTemp 12
+Set rTemp 11
 AddI rByteIdx -4
 Branch IfNotNegativeReg rTemp
 AddI rCount 1
-AddI rByteIdx 4
 AddI rCount 0
 Set rTemp 5
 AddI rCount 0
@@ -38,6 +37,7 @@ Branch IfNegativeReg rTemp
 Set rTemp 1
 Rotate rTemp 1
 Add rCount rTemp
+AddI rByteIdx 4
 DoubleLShift rNextData rData
 Set rTemp -70
 Copy rCompare rTemp
