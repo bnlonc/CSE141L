@@ -22,7 +22,7 @@ topLevel #(.progID(3)) DUT(.clk, .reset, .done);
 initial begin
 // program 3
 // pattern we are looking for; experiment w/ various values
-  pat = 5'b00000
+  pat = 5'b00000;
   str2 = 0;
   DUT.dm1.core[32] = {pat,3'b000};
   for(int i=0; i<32; i++) begin
