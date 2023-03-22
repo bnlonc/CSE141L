@@ -16,6 +16,8 @@ The following is a diagram of the processor's datapath:
 ## The Software 
 Programs 1, 2, and 3 are written in Avernus assembly and are shown in detail on [this spreadsheet](https://docs.google.com/spreadsheets/d/1UvVRZq3m4nf3-hq-Jh5bOOxrk3HVLdq0xjRzOh0w4Xs/edit?usp=sharing). This is the master document for these programs as it shows the state of the register file after every instruction and leaves space to account for the expansion of macros. 
 
+My implementation of Program 2 writes the two error indicator bits and the decoded and corrected 11-bit message to memory. 
+
 The programs are written in the assembly language defined in [this guide](https://docs.google.com/document/d/15hNEZVMPxoKqP5pwmp56o1mdrUxBQB_bsx6f8pswB2o/edit?usp=sharing) and converted to machine code by the assembler included in this project. The assembly code programs are specified in `assemblyCode1.txt`, `assemblyCode2.txt`, and `assemblyCode3.txt`. These files are converted to `machineCode1.txt`, `machineCode2.txt`, and `machineCode3.txt`, respectively. Each of these files is read by its respective test bench when it is run in a ModelSim simulation. 
 
 ## Using the Assembler 
