@@ -68,7 +68,7 @@ resolveMacros []     = [];
 resolveMacros (l:ls) = (resolveInstr l) ++ (resolveMacros ls)
     where     
         resolveInstr :: Instruction -> [Instruction]
-        resolveInstr (name,     arg1,   arg2,   n)  | (any (name ==) ["RShift", "LShift", "Rotate", "DPRSh", "DPLSh"]) = unrollMultiShift (name, arg1, arg2, n)
+        resolveInstr (name,     arg1,   arg2,   n)  | (any (name ==) ["RShift", "LShift", "Rotate", "DoubleRShift", "DoubleLShift"]) = unrollMultiShift (name, arg1, arg2, n)
         resolveInstr ("Zero",   reg,    _,      _)  = [("Xor", reg, reg, "")]
         resolveInstr ("Set",    reg,    value,  _)  = ("Xor", reg, reg, ""):(resolveInstr ("AddI", reg, value, ""))
         resolveInstr ("Swap",   reg1,   reg2,   _)  = [("Xor", reg1, reg2, ""), ("Xor", reg2, reg1, ""), ("Xor", reg1, reg2, "")]
@@ -90,16 +90,24 @@ unrollMultiAddI reg val@(v:vs)  | v == '-'  = reverse (unrollNegative reg (read 
 
 -- Unroll all shift macros to multiple of their base assembly single-shift equivalents
 unrollMultiShift :: Instruction -> [Instruction]
-unrollMultiShift (name, reg1, reg2, count)    | any (name ==) ["DPRSh", "DPLSh"]    = expandDoublePrecision ( take (read count::Int) (repeat (name, reg1, reg2, "")) )
-    where 
-        expandDoublePrecision :: [Instruction] -> [Instruction]
-        expandDoublePrecision [] = []
-        expandDoublePrecision ((name, reg1, reg2, _):ls)                            = (companionShiftName name, reg1, "", ""):(name, reg2, "", ""):(expandDoublePrecision ls)
+unrollMultiShift instr@(name, reg1, reg2, count)    | any (name ==) ["DoubleRShift", "DoubleLShift"] = doubleUnrollHelper instr
+    where
+        doubleUnrollHelper :: Instruction -> [Instruction] 
+        doubleUnrollHelper (name, reg1, reg2, count) | count == ""                                   = expandDoublePrecision [(name, reg1, reg2, "")]
+                                                     | otherwise                                     = expandDoublePrecision ( take (read count::Int) (repeat (name, reg1, reg2, "")) )
             where 
-                companionShiftName :: String -> String 
-                companionShiftName "DPRSh" = "RShift"
-                companionShiftName _       = "LShift"
-unrollMultiShift (name, reg, count, _)                                              = take (read count::Int) (repeat (name, reg, "", ""))
+                expandDoublePrecision :: [Instruction] -> [Instruction]
+                expandDoublePrecision [] = []
+                expandDoublePrecision ((name, reg1, reg2, _):ls)                                     = (companionShiftName name, reg1, "", ""):(backingShiftName name, reg2, "", ""):(expandDoublePrecision ls)
+                    where 
+                        companionShiftName :: String -> String 
+                        companionShiftName "DoubleRShift" = "RShift"
+                        companionShiftName _           = "LShift"
+                        backingShiftName :: String -> String 
+                        backingShiftName "DoubleRShift" = "DPRSh"
+                        backingShiftName _           = "DPLSh"
+unrollMultiShift (name, reg, count, _)                                           | count /= ""       = take (read count::Int) (repeat (name, reg, "", ""))
+                                                                                 | otherwise         = [(name, reg, "", "")]
 
 -- Convert assembly instructions into binary machine code 
 encodeInstruction :: Instruction -> MachineCode
