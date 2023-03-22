@@ -25,6 +25,7 @@ Set rTemp 17
 RShift rCompare 3
 Branch IfNotZeroReg rTemp
 AddI rCount 4
+AddI rCount 4
 Set rTemp 2
 AddI rByteIdx -4
 Branch IfNotNegativeReg rTemp
@@ -38,7 +39,7 @@ Set rTemp 1
 Rotate rTemp 1
 Add rCount rTemp
 DoubleLShift rNextData rData
-Set rTemp -67
+Set rTemp -68
 Copy rCompare rTemp
 Add rPattern rByteIdx
 Set rTemp 2
@@ -70,8 +71,8 @@ Store rCounterIdx rCountValue
 AddI rCounterIdx -2
 AddI rIdx 2
 Load rCounterIdx rMemValue
-Rotate rCount 2
-DoubleLShift rCount rCountValue 2
+Rotate rCount 3
+DoubleLShift rCount rCountValue 3
 Add rMemValue rCountValue
 Store rCounterIdx rMemValue
 AddI rCounterIdx 1
@@ -82,7 +83,7 @@ Add rMemValue rCountValue
 Store rCounterIdx rMemValue
 AddI rCounterIdx 1
 Load rCounterIdx rMemValue
-RShift rCount 3
+RShift rCount 4
 Add rMemValue rCount
 Store rCounterIdx rMemValue
 Copy rByteIdx rIdx
