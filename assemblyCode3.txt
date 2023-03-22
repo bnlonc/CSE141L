@@ -56,9 +56,19 @@ Swap rPattern rByteIdx
 AddI rByteIdx -7
 Branch IfNotZeroReg rCompare
 AddI rPattern -8
-Set rCounterIdx 33
-Load rMemValue rCounterIdx
 Zero rCountValue
+Set rCounterIdx 33
+Set rByteIdx 7
+AddI rIdx -2
+Branch IfNotZeroReg rByteIdx
+Store rCounterIdx rCountValue
+AddI rCounterIdx 1
+Store rCounterIdx rCountValue
+AddI rCounterIdx 1
+Store rCounterIdx rCountValue
+AddI rCounterIdx -2
+AddI rIdx 2
+Load rCounterIdx rMemValue
 Rotate rCount 2
 DoubleLShift rCount rCountValue 2
 Add rMemValue rCountValue
