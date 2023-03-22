@@ -50,7 +50,7 @@ AddI rIdx 7
 AddI rIdx 7
 AddI rIdx 7
 AddI rIdx 7
-AddI rIdx 4
+AddI rIdx 5
 Swap rPattern rByteIdx
 AddI rByteIdx 1
 Swap rPattern rByteIdx
