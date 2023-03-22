@@ -21,7 +21,7 @@ And rByteIdx rPattern
 Xor rPattern rByteIdx
 Copy rCompare rPattern
 Xor rCompare rData
-Set rTemp 17
+Set rTemp 18
 RShift rCompare 3
 Branch IfNotZeroReg rTemp
 AddI rCount 4
