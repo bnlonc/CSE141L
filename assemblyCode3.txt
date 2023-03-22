@@ -55,7 +55,8 @@ AddI rByteIdx 1
 Swap rPattern rByteIdx
 AddI rByteIdx -7
 Branch IfNotZeroReg rCompare
-AddI rPattern -8
+Set rByteIdx -8
+Add rPattern rByteIdx
 Zero rCountValue
 Set rCounterIdx 33
 Set rByteIdx 7
@@ -85,5 +86,5 @@ RShift rCount 3
 Add rMemValue rCount
 Store rCounterIdx rMemValue
 Copy rByteIdx rIdx
-AddI rByteIdx -32
-Branch IfNegativeAbs 7
+AddI rByteIdx -33
+Branch IfNegativeAbs 7 
