@@ -1,0 +1,1940 @@
+# Compile of alu.sv was successful.
+# Compile of control.sv was successful.
+# Compile of dataMem.sv was successful.
+# Compile of instrROM.sv was successful.
+# Compile of PC.sv was successful.
+# Compile of prog1_tb.sv was successful.
+# Compile of prog2_tb.sv was successful.
+# Compile of prog3_tb.sv failed with 1 errors.
+# Compile of regFile.sv was successful.
+# Compile of topLevel.sv was successful.
+# 10 compiles, 1 failed with 1 error.
+# Compile of alu.sv was successful.
+# Compile of control.sv was successful.
+# Compile of dataMem.sv was successful.
+# Compile of instrROM.sv was successful.
+# Compile of PC.sv was successful.
+# Compile of prog1_tb.sv was successful.
+# Compile of prog2_tb.sv was successful.
+# Compile of prog3_tb.sv was successful.
+# Compile of regFile.sv was successful.
+# Compile of topLevel.sv was successful.
+# 10 compiles, 0 failed with no errors.
+vsim -gui work.prog3_tb
+# vsim -gui work.prog3_tb 
+# Start time: 03:14:09 on Mar 22,2023
+# Loading sv_std.std
+# Loading work.prog3_tb
+# Loading work.topLevel
+# Loading work.PC
+# Loading work.instrROM
+# Loading work.control
+# Loading work.regFile
+# Loading work.alu
+# Loading work.dataMem
+add wave -position insertpoint  \
+sim:/prog3_tb/clk \
+sim:/prog3_tb/reset \
+sim:/prog3_tb/done
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: blonc  Hostname: E70612913845478  ProcessID: 1964
+#           Attempting to use alternate WLF file "./wlftbykmq1".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlftbykmq1
+add wave -position insertpoint  \
+sim:/prog3_tb/DUT/clk \
+sim:/prog3_tb/DUT/reset \
+sim:/prog3_tb/DUT/done
+add wave -position insertpoint  \
+sim:/prog3_tb/DUT/pc1/progCtr
+add wave -position insertpoint  \
+sim:/prog3_tb/DUT/ir1/machineCode
+add wave -position insertpoint  \
+{sim:/prog3_tb/DUT/rf1/core[0]} \
+{sim:/prog3_tb/DUT/rf1/core[1]} \
+{sim:/prog3_tb/DUT/rf1/core[2]} \
+{sim:/prog3_tb/DUT/rf1/core[3]} \
+{sim:/prog3_tb/DUT/rf1/core[4]} \
+{sim:/prog3_tb/DUT/rf1/core[5]} \
+{sim:/prog3_tb/DUT/rf1/core[6]} \
+{sim:/prog3_tb/DUT/rf1/core[7]}
+add wave -position insertpoint  \
+sim:/prog3_tb/DUT/dm1/core
+run -all
+# Compile of alu.sv was successful.
+# Compile of control.sv was successful.
+# Compile of dataMem.sv was successful.
+# Compile of instrROM.sv was successful.
+# Compile of PC.sv was successful.
+# Compile of prog1_tb.sv was successful.
+# Compile of prog2_tb.sv was successful.
+# Compile of prog3_tb.sv was successful.
+# Compile of regFile.sv was successful.
+# Compile of topLevel.sv was successful.
+# 10 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+# Loading work.topLevel
+# Loading work.PC
+# Loading work.instrROM
+# Loading work.control
+# Loading work.regFile
+# Loading work.alu
+# Loading work.dataMem
+run -all
+restart -f
+run -all
+restart -f
+run -all
+# Compile of alu.sv was successful.
+# Compile of control.sv was successful.
+# Compile of dataMem.sv was successful.
+# Compile of instrROM.sv was successful.
+# Compile of PC.sv was successful.
+# Compile of prog1_tb.sv was successful.
+# Compile of prog2_tb.sv was successful.
+# Compile of prog3_tb.sv was successful.
+# Compile of regFile.sv was successful.
+# Compile of topLevel.sv was successful.
+# 10 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+# Loading work.topLevel
+# Loading work.PC
+# Loading work.instrROM
+# Loading work.control
+# Loading work.regFile
+# Loading work.alu
+# Loading work.dataMem
+restart -f
+run -all
+restart -f
+run -all
+restart -f
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    = 128   0
+# number of bytes w/ at least one pattern =  32  32
+# number of patterns w/ byte crossing     = 252  24
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(59)
+#    Time: 173995 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 59
+restart -f
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    = 128 124
+# number of bytes w/ at least one pattern =  32  32
+# number of patterns w/ byte crossing     = 252   1
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(59)
+#    Time: 177795 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 59
+restart -f
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    = 128 124
+# number of bytes w/ at least one pattern =  32  32
+# number of patterns w/ byte crossing     = 252   1
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(59)
+#    Time: 177795 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 59
+restart -f
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    = 128   4
+# number of bytes w/ at least one pattern =  32   1
+# number of patterns w/ byte crossing     = 252   8
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(59)
+#    Time: 5795 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 59
+add wave -position insertpoint  \
+sim:/prog3_tb/DUT/flagZero
+restart -f
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    = 128   4
+# number of bytes w/ at least one pattern =  32   1
+# number of patterns w/ byte crossing     = 252   8
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(59)
+#    Time: 5795 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 59
+restart -f
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    = 128 124
+# number of bytes w/ at least one pattern =  32  32
+# number of patterns w/ byte crossing     = 252   1
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(59)
+#    Time: 177795 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 59
+restart -f
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    = 128 124
+# number of bytes w/ at least one pattern =  32  31
+# number of patterns w/ byte crossing     = 252 244
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(59)
+#    Time: 172205 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 59
+restart -f
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    = 128  12
+# number of bytes w/ at least one pattern =  32  30
+# number of patterns w/ byte crossing     = 252 141
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(59)
+#    Time: 161675 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 59
+restart -f
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    = 128 124
+# number of bytes w/ at least one pattern =  32  31
+# number of patterns w/ byte crossing     = 252 244
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(59)
+#    Time: 172205 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 59
+run -all
+restart -f
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    = 128 128
+# number of bytes w/ at least one pattern =  32  32
+# number of patterns w/ byte crossing     = 252 252
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(59)
+#    Time: 180675 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 59
+# Compile of alu.sv was successful.
+# Compile of control.sv was successful.
+# Compile of dataMem.sv was successful.
+# Compile of instrROM.sv was successful.
+# Compile of PC.sv was successful.
+# Compile of prog1_tb.sv was successful.
+# Compile of prog2_tb.sv was successful.
+# Compile of prog3_tb.sv was successful.
+# Compile of regFile.sv was successful.
+# Compile of topLevel.sv was successful.
+# 10 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+# Loading work.topLevel
+# Loading work.PC
+# Loading work.instrROM
+# Loading work.control
+# Loading work.regFile
+# Loading work.alu
+# Loading work.dataMem
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   3  25
+# number of bytes w/ at least one pattern =   3  29
+# number of patterns w/ byte crossing     =   6  78
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(59)
+#    Time: 151285 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 59
+restart -f
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   3   3
+# number of bytes w/ at least one pattern =   3   5
+# number of patterns w/ byte crossing     =   6   6
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(59)
+#    Time: 148825 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 59
+# Compile of alu.sv was successful.
+# Compile of control.sv was successful.
+# Compile of dataMem.sv was successful.
+# Compile of instrROM.sv was successful.
+# Compile of PC.sv was successful.
+# Compile of prog1_tb.sv was successful.
+# Compile of prog2_tb.sv was successful.
+# Compile of prog3_tb.sv was successful.
+# Compile of regFile.sv was successful.
+# Compile of topLevel.sv was successful.
+# 10 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+# Loading work.topLevel
+# Loading work.PC
+# Loading work.instrROM
+# Loading work.control
+# Loading work.regFile
+# Loading work.alu
+# Loading work.dataMem
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   3   3
+# number of bytes w/ at least one pattern =   3   5
+# number of patterns w/ byte crossing     =   6   6
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(60)
+#    Time: 148825 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 60
+# Compile of alu.sv was successful.
+# Compile of control.sv was successful.
+# Compile of dataMem.sv was successful.
+# Compile of instrROM.sv was successful.
+# Compile of PC.sv was successful.
+# Compile of prog1_tb.sv was successful.
+# Compile of prog2_tb.sv was successful.
+# Compile of prog3_tb.sv was successful.
+# Compile of regFile.sv was successful.
+# Compile of topLevel.sv was successful.
+# 10 compiles, 0 failed with no errors.
+# Compile of alu.sv was successful.
+# Compile of control.sv was successful.
+# Compile of dataMem.sv was successful.
+# Compile of instrROM.sv was successful.
+# Compile of PC.sv was successful.
+# Compile of prog1_tb.sv was successful.
+# Compile of prog2_tb.sv was successful.
+# Compile of prog3_tb.sv was successful.
+# Compile of regFile.sv was successful.
+# Compile of topLevel.sv was successful.
+# 10 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+# Loading work.topLevel
+# Loading work.PC
+# Loading work.instrROM
+# Loading work.control
+# Loading work.regFile
+# Loading work.alu
+# Loading work.dataMem
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   4   4
+# number of bytes w/ at least one pattern =   1   1
+# number of patterns w/ byte crossing     =   4   4
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(60)
+#    Time: 148435 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 60
+# Compile of alu.sv was successful.
+# Compile of control.sv was successful.
+# Compile of dataMem.sv was successful.
+# Compile of instrROM.sv was successful.
+# Compile of PC.sv was successful.
+# Compile of prog1_tb.sv was successful.
+# Compile of prog2_tb.sv was successful.
+# Compile of prog3_tb.sv was successful.
+# Compile of regFile.sv was successful.
+# Compile of topLevel.sv was successful.
+# 10 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+# Loading work.topLevel
+# Loading work.PC
+# Loading work.instrROM
+# Loading work.control
+# Loading work.regFile
+# Loading work.alu
+# Loading work.dataMem
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   0   0
+# number of bytes w/ at least one pattern =   0   2
+# number of patterns w/ byte crossing     =   3   3
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(60)
+#    Time: 148315 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 60
+restart -f
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   0   1
+# number of bytes w/ at least one pattern =   0   1
+# number of patterns w/ byte crossing     =   3   3
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(60)
+#    Time: 152355 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 60
+restart -f
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   0   0
+# number of bytes w/ at least one pattern =   0   0
+# number of patterns w/ byte crossing     =   3   3
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(60)
+#    Time: 148115 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 60
+# Compile of alu.sv was successful.
+# Compile of control.sv was successful.
+# Compile of dataMem.sv was successful.
+# Compile of instrROM.sv was successful.
+# Compile of PC.sv was successful.
+# Compile of prog1_tb.sv was successful.
+# Compile of prog2_tb.sv was successful.
+# Compile of prog3_tb.sv was successful.
+# Compile of regFile.sv was successful.
+# Compile of topLevel.sv was successful.
+# 10 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+# Loading work.topLevel
+# Loading work.PC
+# Loading work.instrROM
+# Loading work.control
+# Loading work.regFile
+# Loading work.alu
+# Loading work.dataMem
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   3   3
+# number of bytes w/ at least one pattern =   3   3
+# number of patterns w/ byte crossing     =   6   6
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(60)
+#    Time: 148655 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 60
+# Compile of prog3_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   4   4
+# number of bytes w/ at least one pattern =   1   1
+# number of patterns w/ byte crossing     =   4   4
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(60)
+#    Time: 148475 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 60
+# Compile of prog3_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   6   6
+# number of bytes w/ at least one pattern =   4   4
+# number of patterns w/ byte crossing     =   6   6
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(60)
+#    Time: 148875 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 60
+# Compile of prog3_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    = 128 128
+# number of bytes w/ at least one pattern =  32  32
+# number of patterns w/ byte crossing     = 252 252
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(60)
+#    Time: 176995 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 60
+# Compile of alu.sv was successful.
+# Compile of control.sv was successful.
+# Compile of dataMem.sv was successful.
+# Compile of instrROM.sv was successful.
+# Compile of PC.sv was successful.
+# Compile of prog1_tb.sv was successful.
+# Compile of prog2_tb.sv was successful.
+# Compile of prog3_tb.sv was successful.
+# Compile of regFile.sv was successful.
+# Compile of topLevel.sv was successful.
+# 10 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+# Loading work.topLevel
+# Loading work.PC
+# Loading work.instrROM
+# Loading work.control
+# Loading work.regFile
+# Loading work.alu
+# Loading work.dataMem
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   5   5
+# number of bytes w/ at least one pattern =   5   5
+# number of patterns w/ byte crossing     =   8   8
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(62)
+#    Time: 149015 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 62
+restart -f
+quit -sim
+# End time: 09:04:15 on Mar 22,2023, Elapsed time: 5:50:06
+# Errors: 0, Warnings: 1
+vsim -gui work.prog1_tb
+# vsim -gui work.prog1_tb 
+# Start time: 09:04:27 on Mar 22,2023
+# Loading sv_std.std
+# Loading work.prog1_tb
+# Loading work.topLevel
+# Loading work.PC
+# Loading work.instrROM
+# Loading work.control
+# Loading work.regFile
+# Loading work.alu
+# Loading work.dataMem
+run -all
+# start program 1
+#  
+# 0110101000110000
+# 0110101000110000
+#  we have a match!
+#  
+# 1011110110000001
+# 1011110110000001
+#  we have a match!
+#  
+# 1010110000000110
+# 1010110000000110
+#  we have a match!
+#  
+# 1010110001100000
+# 1010110001100000
+#  we have a match!
+#  
+# 1111011000000110
+# 1111011000000110
+#  we have a match!
+#  
+# 0011001110010110
+# 0011001110010110
+#  we have a match!
+#  
+# 0000100101100000
+# 0000100101100000
+#  we have a match!
+#  
+# 1010010100001111
+# 1010010100001111
+#  we have a match!
+#  
+# 1100011000000101
+# 1100011000000101
+#  we have a match!
+#  
+# 1001101000000011
+# 1001101000000011
+#  we have a match!
+#  
+# 1110001001111011
+# 1110001001111011
+#  we have a match!
+#  
+# 1001101000111111
+# 1001101000111111
+#  we have a match!
+#  
+# 1010111111110101
+# 1010111111110101
+#  we have a match!
+#  
+# 1110111010000111
+# 1110111010000111
+#  we have a match!
+#  
+# 1101001011101110
+# 1101001011101110
+#  we have a match!
+#  
+# program 1 score =    15 out of    15
+# ** Note: $stop    : L:/CSE141L/prog1_tb.sv(63)
+#    Time: 4715 ns  Iteration: 0  Instance: /prog1_tb
+# Break in Module prog1_tb at L:/CSE141L/prog1_tb.sv line 63
+# Compile of prog1_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog1_tb
+run -all
+# start program 1
+#  
+# 1110110100010010
+# 1110110100010010
+#  we have a match!
+#  
+# 0000111111111111
+# 0000111111111111
+#  we have a match!
+#  
+# 1111101001101100
+# 1111101001101100
+#  we have a match!
+#  
+# 1101110100010001
+# 1101110100010001
+#  we have a match!
+#  
+# 0001001001110100
+# 0001001001110100
+#  we have a match!
+#  
+# 0100011100011101
+# 0100011100011101
+#  we have a match!
+#  
+# 1011110110110010
+# 1011110110110010
+#  we have a match!
+#  
+# 1100001110011001
+# 1100001110011001
+#  we have a match!
+#  
+# 1110100011100111
+# 1110100011100111
+#  we have a match!
+#  
+# 0101010100110011
+# 0101010100110011
+#  we have a match!
+#  
+# 1001000011001010
+# 1001000011001010
+#  we have a match!
+#  
+# 0010111001001000
+# 0010111001001000
+#  we have a match!
+#  
+# 1001001101011111
+# 1001001101011111
+#  we have a match!
+#  
+# 0111010010000100
+# 0111010010000100
+#  we have a match!
+#  
+# 0101000011000110
+# 0101000011000110
+#  we have a match!
+#  
+# program 1 score =    15 out of    15
+# ** Note: $stop    : L:/CSE141L/prog1_tb.sv(63)
+#    Time: 4715 ns  Iteration: 0  Instance: /prog1_tb
+# Break in Module prog1_tb at L:/CSE141L/prog1_tb.sv line 63
+# Compile of prog1_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog1_tb
+run -all
+# start program 1
+#  
+# 0101100100000011
+# 0101100100000011
+#  we have a match!
+#  
+# 1011110111011011
+# 1011110111011011
+#  we have a match!
+#  
+# 1001100110100101
+# 1001100110100101
+#  we have a match!
+#  
+# 0111001001001110
+# 0111001001001110
+#  we have a match!
+#  
+# 1110101100100111
+# 1110101100100111
+#  we have a match!
+#  
+# 1011110111101000
+# 1011110111101000
+#  we have a match!
+#  
+# 0110100110011001
+# 0110100110011001
+#  we have a match!
+#  
+# 0111010001000111
+# 0111010001000111
+#  we have a match!
+#  
+# 0001010000100111
+# 0001010000100111
+#  we have a match!
+#  
+# 0101110010011111
+# 0101110010011111
+#  we have a match!
+#  
+# 0111010001111011
+# 0111010001111011
+#  we have a match!
+#  
+# 0000000001011010
+# 0000000001011010
+#  we have a match!
+#  
+# 0111011100100010
+# 0111011100100010
+#  we have a match!
+#  
+# 0101011010100110
+# 0101011010100110
+#  we have a match!
+#  
+# 0001001000100001
+# 0001001000100001
+#  we have a match!
+#  
+# program 1 score =    15 out of    15
+# ** Note: $stop    : L:/CSE141L/prog1_tb.sv(63)
+#    Time: 4715 ns  Iteration: 0  Instance: /prog1_tb
+# Break in Module prog1_tb at L:/CSE141L/prog1_tb.sv line 63
+# Compile of prog1_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog1_tb
+run -all
+# start program 1
+#  
+# 0110110000000101
+# 0110110000000101
+#  we have a match!
+#  
+# 1111101000001010
+# 1111101000001010
+#  we have a match!
+#  
+# 1010011010101001
+# 1010011010101001
+#  we have a match!
+#  
+# 1110011110111101
+# 1110011110111101
+#  we have a match!
+#  
+# 1000101110110111
+# 1000101110110111
+#  we have a match!
+#  
+# 1110110110111000
+# 1110110110111000
+#  we have a match!
+#  
+# 0001110110000100
+# 0001110110000100
+#  we have a match!
+#  
+# 1010110000001001
+# 1010110000001001
+#  we have a match!
+#  
+# 1000000101000010
+# 1000000101000010
+#  we have a match!
+#  
+# 1111100110100011
+# 1111100110100011
+#  we have a match!
+#  
+# 1010111110010011
+# 1010111110010011
+#  we have a match!
+#  
+# 1001010111111100
+# 1001010111111100
+#  we have a match!
+#  
+# 0011010110101100
+# 0011010110101100
+#  we have a match!
+#  
+# 0000111101100110
+# 0000111101100110
+#  we have a match!
+#  
+# 1111100100001001
+# 1111100100001001
+#  we have a match!
+#  
+# program 1 score =    15 out of    15
+# ** Note: $stop    : L:/CSE141L/prog1_tb.sv(63)
+#    Time: 4715 ns  Iteration: 0  Instance: /prog1_tb
+# Break in Module prog1_tb at L:/CSE141L/prog1_tb.sv line 63
+# Compile of prog1_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog1_tb
+run -all
+# start program 1
+#  
+# 1011000100010100
+# 1011000100010100
+#  we have a match!
+#  
+# 0101101010101010
+# 0101101010101010
+#  we have a match!
+#  
+# 0010011100011011
+# 0010011100011011
+#  we have a match!
+#  
+# 0111001000101000
+# 0111001000101000
+#  we have a match!
+#  
+# 1011101111101110
+# 1011101111101110
+#  we have a match!
+#  
+# 0110110000111001
+# 0110110000111001
+#  we have a match!
+#  
+# 1010101001100110
+# 1010101001100110
+#  we have a match!
+#  
+# 1001001111000110
+# 1001001111000110
+#  we have a match!
+#  
+# 0110011001011010
+# 0110011001011010
+#  we have a match!
+#  
+# 1110111001110111
+# 1110111001110111
+#  we have a match!
+#  
+# 0101100110010101
+# 0101100110010101
+#  we have a match!
+#  
+# 0011101001101111
+# 0011101001101111
+#  we have a match!
+#  
+# 1010111110101111
+# 1010111110101111
+#  we have a match!
+#  
+# 0111010011010001
+# 0111010011010001
+#  we have a match!
+#  
+# 1111010100001010
+# 1111010100001010
+#  we have a match!
+#  
+# program 1 score =    15 out of    15
+# ** Note: $stop    : L:/CSE141L/prog1_tb.sv(63)
+#    Time: 4715 ns  Iteration: 0  Instance: /prog1_tb
+# Break in Module prog1_tb at L:/CSE141L/prog1_tb.sv line 63
+# Compile of prog1_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog1_tb
+run -all
+# start program 1
+#  
+# 1001000000000110
+# 1001000000000110
+#  we have a match!
+#  
+# 1011111010000010
+# 1011111010000010
+#  we have a match!
+#  
+# 0110011010010110
+# 0110011010010110
+#  we have a match!
+#  
+# 1001101011110011
+# 1001101011110011
+#  we have a match!
+#  
+# 0110111110011111
+# 0110111110011111
+#  we have a match!
+#  
+# 0110001111111010
+# 0110001111111010
+#  we have a match!
+#  
+# 0000001101100101
+# 0000001101100101
+#  we have a match!
+#  
+# 1111001100111111
+# 1111001100111111
+#  we have a match!
+#  
+# 1011111011011000
+# 1011111011011000
+#  we have a match!
+#  
+# 0000000001010101
+# 0000000001010101
+#  we have a match!
+#  
+# 0010001011010010
+# 0010001011010010
+#  we have a match!
+#  
+# 1110011110000001
+# 1110011110000001
+#  we have a match!
+#  
+# 0111101101110100
+# 0111101101110100
+#  we have a match!
+#  
+# 0011101000000110
+# 0011101000000110
+#  we have a match!
+#  
+# 0111100011011101
+# 0111100011011101
+#  we have a match!
+#  
+# program 1 score =    15 out of    15
+# ** Note: $stop    : L:/CSE141L/prog1_tb.sv(63)
+#    Time: 4715 ns  Iteration: 0  Instance: /prog1_tb
+# Break in Module prog1_tb at L:/CSE141L/prog1_tb.sv line 63
+quit -sim
+# End time: 09:11:32 on Mar 22,2023, Elapsed time: 0:07:05
+# Errors: 0, Warnings: 1
+vsim -gui work.prog2_tb
+# vsim -gui work.prog2_tb 
+# Start time: 09:11:42 on Mar 22,2023
+# Loading sv_std.std
+# Loading work.prog2_tb
+# Loading work.topLevel
+# Loading work.PC
+# Loading work.instrROM
+# Loading work.control
+# Loading work.regFile
+# Loading work.alu
+# Loading work.dataMem
+run -all
+#  
+# start program 2
+#  
+# original data  0000010100100100
+# clean parity   1010010101010101
+# corrupt parity 1010011101010111
+# got output     1000010100110100
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000010100110100
+# flip positions = 001001 0001
+#  
+# original data  0000011001100011
+# clean parity   1100110000111100
+# corrupt parity 1100110000111100
+# got output     0000011001100011
+# no errors injected, expecting MSBs of output = 2'b00
+# we have a match
+# expected 0000011001100011, got 0000011001100011
+# flip positions = 001101 1101
+#  
+# original data  0000010001100101
+# clean parity   1000110101001110
+# corrupt parity 1000110101001000
+# got output     1000010001100101
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000010001100101
+# flip positions = 000001 0010
+#  
+# original data  0000010100001101
+# clean parity   1010000011001001
+# corrupt parity 1010000010001001
+# got output     0100010100001101
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100010100001101, got 0100010100001101
+# flip positions = 111101 0110
+#  
+# original data  0000011111101101
+# clean parity   1111110011001111
+# corrupt parity 1110110011001111
+# got output     0100011111101101
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011111101101, got 0100011111101101
+# flip positions = 111001 1100
+#  
+# original data  0000010011000110
+# clean parity   1001100101100110
+# corrupt parity 1001100101000110
+# got output     0100010011000110
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100010011000110, got 0100010011000110
+# flip positions = 101010 0101
+#  
+# original data  0000011111100101
+# clean parity   1111110001011001
+# corrupt parity 1111110011011001
+# got output     0100011111100101
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011111100101, got 0100011111100101
+# flip positions = 010010 0111
+#  
+# original data  0000001110001111
+# clean parity   0111000111101000
+# corrupt parity 0011000111101100
+# got output     1000000110001111
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000000110001111
+# flip positions = 001110 0010
+#  
+# original data  0000001011101000
+# clean parity   0101110010010000
+# corrupt parity 0101110010110000
+# got output     0100001011101000
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001011101000, got 0100001011101000
+# flip positions = 011100 0101
+#  
+# original data  0000000010111101
+# clean parity   0001011111011011
+# corrupt parity 0011011111011011
+# got output     0100000010111101
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100000010111101, got 0100000010111101
+# flip positions = 100101 1101
+#  
+# original data  0000001001100011
+# clean parity   0100110100101011
+# corrupt parity 0100100100101010
+# got output     1000001001000011
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000001001000011
+# flip positions = 000000 1010
+#  
+# original data  0000000100100000
+# clean parity   0010010000010111
+# corrupt parity 0010000000010111
+# got output     0100000100100000
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100000100100000, got 0100000100100000
+# flip positions = 011101 1010
+#  
+# original data  0000011010010110
+# clean parity   1101001001110111
+# corrupt parity 1111001001111111
+# got output     1000011110010111
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000011110010111
+# flip positions = 001101 0011
+#  
+# original data  0000011001010011
+# clean parity   1100101000111010
+# corrupt parity 1100001000111010
+# got output     0100011001010011
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011001010011, got 0100011001010011
+# flip positions = 010101 1011
+#  
+# original data  0000001000000010
+# clean parity   0100000100100111
+# corrupt parity 0000000100100111
+# got output     0100001000000010
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001000000010, got 0100001000000010
+# flip positions = 011101 1110
+#  
+# program 2 score =    15 out of    15
+# ** Note: $stop    : L:/CSE141L/prog2_tb.sv(109)
+#    Time: 27325 ns  Iteration: 0  Instance: /prog2_tb
+# Break in Module prog2_tb at L:/CSE141L/prog2_tb.sv line 109
+# Compile of alu.sv was successful.
+# Compile of control.sv was successful.
+# Compile of dataMem.sv was successful.
+# Compile of instrROM.sv was successful.
+# Compile of PC.sv was successful.
+# Compile of prog1_tb.sv was successful.
+# Compile of prog2_tb.sv was successful.
+# Compile of prog3_tb.sv was successful.
+# Compile of regFile.sv was successful.
+# Compile of topLevel.sv was successful.
+# 10 compiles, 0 failed with no errors.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog2_tb
+# Loading work.topLevel
+# Loading work.PC
+# Loading work.instrROM
+# Loading work.control
+# Loading work.regFile
+# Loading work.alu
+# Loading work.dataMem
+run -all
+#  
+# start program 2
+#  
+# original data  0000000000000000
+# clean parity   0000000000000000
+# corrupt parity 1000000000000000
+# got output     0100000000000000
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100000000000000, got 0100000000000000
+# flip positions = 010010 1111
+#  
+# original data  0000011010110010
+# clean parity   1101011100100111
+# corrupt parity 1101011100111111
+# got output     1000011010110011
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000011010110011
+# flip positions = 000100 0011
+#  
+# original data  0000010010110111
+# clean parity   1001011001101001
+# corrupt parity 1001111001101001
+# got output     0100010010110111
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100010010110111, got 0100010010110111
+# flip positions = 100011 1011
+#  
+# original data  0000011001110001
+# clean parity   1100111100001100
+# corrupt parity 1100111101001100
+# got output     0100011001110001
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011001110001, got 0100011001110001
+# flip positions = 100101 0110
+#  
+# original data  0000010000001010
+# clean parity   1000000110110010
+# corrupt parity 0010000110110010
+# got output     1000000100001010
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000000100001010
+# flip positions = 001101 1111
+#  
+# original data  0000010110011001
+# clean parity   1011001010001110
+# corrupt parity 1011001010001010
+# got output     0100010110011001
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100010110011001, got 0100010110011001
+# flip positions = 010001 0010
+#  
+# original data  0000011000000010
+# clean parity   1100000000110000
+# corrupt parity 1000000000110000
+# got output     0100011000000010
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011000000010, got 0100011000000010
+# flip positions = 100000 1110
+#  
+# original data  0000000010011011
+# clean parity   0001001010111000
+# corrupt parity 0001001011111000
+# got output     0100000010011011
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100000010011011, got 0100000010011011
+# flip positions = 100000 0110
+#  
+# original data  0000011100000111
+# clean parity   1110000101111000
+# corrupt parity 0110000101111000
+# got output     0100011100000111
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011100000111, got 0100011100000111
+# flip positions = 011011 1111
+#  
+# original data  0000001011110110
+# clean parity   0101111101100011
+# corrupt parity 0101111001100011
+# got output     0100001011110110
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001011110110, got 0100001011110110
+# flip positions = 101001 1000
+#  
+# original data  0000010001110101
+# clean parity   1000111001001101
+# corrupt parity 1000111000001100
+# got output     1000010001110001
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000010001110001
+# flip positions = 000110 0000
+#  
+# original data  0000011111000101
+# clean parity   1111100101011100
+# corrupt parity 1111110101011100
+# got output     0100011111000101
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011111000101, got 0100011111000101
+# flip positions = 100000 1010
+#  
+# original data  0000011111001001
+# clean parity   1111100110011111
+# corrupt parity 1111000110011110
+# got output     1000011110001001
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000011110001001
+# flip positions = 001011 0000
+#  
+# original data  0000010101111000
+# clean parity   1010111110010011
+# corrupt parity 1010111100010011
+# got output     0100010101111000
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100010101111000, got 0100010101111000
+# flip positions = 110101 0111
+#  
+# original data  0000000110011111
+# clean parity   0011001111111111
+# corrupt parity 1011001111111111
+# got output     0100000110011111
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100000110011111, got 0100000110011111
+# flip positions = 101001 1111
+#  
+# program 2 score =    15 out of    15
+# ** Note: $stop    : L:/CSE141L/prog2_tb.sv(109)
+#    Time: 30485 ns  Iteration: 0  Instance: /prog2_tb
+# Break in Module prog2_tb at L:/CSE141L/prog2_tb.sv line 109
+# Compile of prog2_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog2_tb
+run -all
+#  
+# start program 2
+#  
+# original data  0000001000000000
+# clean parity   0100000100010100
+# corrupt parity 0100010000010100
+# got output     1000001000100000
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000001000100000
+# flip positions = 001010 1000
+#  
+# original data  0000001010110110
+# clean parity   0101011001100101
+# corrupt parity 0101011001100100
+# got output     0100001010110110
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001010110110, got 0100001010110110
+# flip positions = 010100 0000
+#  
+# original data  0000011010000011
+# clean parity   1101000100101110
+# corrupt parity 1101000100101010
+# got output     0100011010000011
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011010000011, got 0100011010000011
+# flip positions = 100011 0010
+#  
+# original data  0000010001001101
+# clean parity   1000100011011101
+# corrupt parity 1000101011001101
+# got output     1000010001011101
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000010001011101
+# flip positions = 001001 0100
+#  
+# original data  0000011001101011
+# clean parity   1100110010101010
+# corrupt parity 1100100010101010
+# got output     0100011001101011
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011001101011, got 0100011001101011
+# flip positions = 101101 1010
+#  
+# original data  0000010011100111
+# clean parity   1001110001101100
+# corrupt parity 1101110001101100
+# got output     0100010011100111
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100010011100111, got 0100010011100111
+# flip positions = 011001 1110
+#  
+# original data  0000011001100100
+# clean parity   1100110001010101
+# corrupt parity 1100010001010101
+# got output     0100011001100100
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011001100100, got 0100011001100100
+# flip positions = 110001 1011
+#  
+# original data  0000011110110010
+# clean parity   1111011000110101
+# corrupt parity 1111011000110100
+# got output     0100011110110010
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011110110010, got 0100011110110010
+# flip positions = 011000 0000
+#  
+# original data  0000000000010111
+# clean parity   0000001101101010
+# corrupt parity 0000001101101010
+# got output     0000000000010111
+# no errors injected, expecting MSBs of output = 2'b00
+# we have a match
+# expected 0000000000010111, got 0000000000010111
+# flip positions = 000111 0111
+#  
+# original data  0000010001001000
+# clean parity   1000100010000111
+# corrupt parity 1000100000000011
+# got output     1000010001000000
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000010001000000
+# flip positions = 000010 0111
+#  
+# original data  0000001111100001
+# clean parity   0111110100011011
+# corrupt parity 0111100100011011
+# got output     0100001111100001
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001111100001, got 0100001111100001
+# flip positions = 011101 1010
+#  
+# original data  0000011000000100
+# clean parity   1100000001010110
+# corrupt parity 1100000001010111
+# got output     0100011000000100
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011000000100, got 0100011000000100
+# flip positions = 110011 0000
+#  
+# original data  0000001101111000
+# clean parity   0110111110010000
+# corrupt parity 0110111110011000
+# got output     0100001101111000
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001101111000, got 0100001101111000
+# flip positions = 110010 0011
+#  
+# original data  0000001000011010
+# clean parity   0100001010110010
+# corrupt parity 0101101010110010
+# got output     1000001011011010
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000001011011010
+# flip positions = 001100 1011
+#  
+# original data  0000001110000011
+# clean parity   0111000100101011
+# corrupt parity 0111001100101011
+# got output     0100001110000011
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001110000011, got 0100001110000011
+# flip positions = 011111 1001
+#  
+# program 2 score =    15 out of    15
+# ** Note: $stop    : L:/CSE141L/prog2_tb.sv(109)
+#    Time: 24425 ns  Iteration: 0  Instance: /prog2_tb
+# Break in Module prog2_tb at L:/CSE141L/prog2_tb.sv line 109
+# Compile of prog2_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog2_tb
+run -all
+#  
+# start program 2
+#  
+# original data  0000000000000000
+# clean parity   0000000000000000
+# corrupt parity 0000000000000001
+# got output     0100000000000000
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100000000000000, got 0100000000000000
+# flip positions = 110010 0000
+#  
+# original data  0000000010111000
+# clean parity   0001011110000001
+# corrupt parity 0001010110010001
+# got output     1000000010101000
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000000010101000
+# flip positions = 000100 1001
+#  
+# original data  0000001001110010
+# clean parity   0100111000100111
+# corrupt parity 0100111000110111
+# got output     0100001001110010
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001001110010, got 0100001001110010
+# flip positions = 100011 0100
+#  
+# original data  0000001110010110
+# clean parity   0111001001110010
+# corrupt parity 0111001001111010
+# got output     0100001110010110
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001110010110, got 0100001110010110
+# flip positions = 101010 0011
+#  
+# original data  0000011111100001
+# clean parity   1111110000001100
+# corrupt parity 1110110000000100
+# got output     1000011101100000
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000011101100000
+# flip positions = 001100 0011
+#  
+# original data  0000000101010110
+# clean parity   0010101101110001
+# corrupt parity 0011101101110001
+# got output     0100000101010110
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100000101010110, got 0100000101010110
+# flip positions = 011100 1100
+#  
+# original data  0000001010000100
+# clean parity   0101000001010000
+# corrupt parity 0101001001010000
+# got output     0100001010000100
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001010000100, got 0100001010000100
+# flip positions = 100010 1001
+#  
+# original data  0000000101100101
+# clean parity   0010110101001011
+# corrupt parity 0010111101001010
+# got output     1000000101110101
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000000101110101
+# flip positions = 000000 1001
+#  
+# original data  0000000001110010
+# clean parity   0000111100110011
+# corrupt parity 0000111100010001
+# got output     1000000001110000
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000000001110000
+# flip positions = 000001 0101
+#  
+# original data  0000011000001110
+# clean parity   1100000011110011
+# corrupt parity 1101000011110011
+# got output     0100011000001110
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011000001110, got 0100011000001110
+# flip positions = 011111 1100
+#  
+# original data  0000010001011010
+# clean parity   1000101110110111
+# corrupt parity 1000100110110111
+# got output     0100010001011010
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100010001011010, got 0100010001011010
+# flip positions = 100101 1001
+#  
+# original data  0000011011000100
+# clean parity   1101100001000001
+# corrupt parity 1001100011000001
+# got output     1000010011001100
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000010011001100
+# flip positions = 001110 0111
+#  
+# original data  0000010010110010
+# clean parity   1001011000110011
+# corrupt parity 1001011000100011
+# got output     0100010010110010
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100010010110010, got 0100010010110010
+# flip positions = 101010 0100
+#  
+# original data  0000001001010000
+# clean parity   0100101100010001
+# corrupt parity 0100101101010001
+# got output     0100001001010000
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001001010000, got 0100001001010000
+# flip positions = 101001 0110
+#  
+# original data  0000011101111010
+# clean parity   1110111010110100
+# corrupt parity 1110111000110100
+# got output     0100011101111010
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011101111010, got 0100011101111010
+# flip positions = 110001 0111
+#  
+# program 2 score =    15 out of    15
+# ** Note: $stop    : L:/CSE141L/prog2_tb.sv(109)
+#    Time: 25345 ns  Iteration: 0  Instance: /prog2_tb
+# Break in Module prog2_tb at L:/CSE141L/prog2_tb.sv line 109
+# Compile of prog2_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog2_tb
+run -all
+#  
+# start program 2
+#  
+# original data  0000010000000000
+# clean parity   1000000100010111
+# corrupt parity 0000000100010111
+# got output     0100010000000000
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100010000000000, got 0100010000000000
+# flip positions = 110000 1111
+#  
+# original data  0000000000111001
+# clean parity   0000011010011111
+# corrupt parity 0001011110011111
+# got output     1000000010111001
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000000010111001
+# flip positions = 001000 1100
+#  
+# original data  0000011101100101
+# clean parity   1110110101001000
+# corrupt parity 1010110101001000
+# got output     0100011101100101
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011101100101, got 0100011101100101
+# flip positions = 110011 1110
+#  
+# original data  0000011100001101
+# clean parity   1110000111011101
+# corrupt parity 1110100111010101
+# got output     1000011101001100
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000011101001100
+# flip positions = 000011 1011
+#  
+# original data  0000001101111001
+# clean parity   0110111110011111
+# corrupt parity 0110111111011111
+# got output     0100001101111001
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001101111001, got 0100001101111001
+# flip positions = 100100 0110
+#  
+# original data  0000001000101010
+# clean parity   0100010010110100
+# corrupt parity 0100010010111100
+# got output     0100001000101010
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001000101010, got 0100001000101010
+# flip positions = 111110 0011
+#  
+# original data  0000010010011101
+# clean parity   1001001111001001
+# corrupt parity 1001001110001011
+# got output     1000010010011001
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000010010011001
+# flip positions = 000110 0001
+#  
+# original data  0000000000101011
+# clean parity   0000010110101111
+# corrupt parity 0100010110111111
+# got output     1000001000101011
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000001000101011
+# flip positions = 001110 0100
+#  
+# original data  0000011110110110
+# clean parity   1111011001100000
+# corrupt parity 1111011001101000
+# got output     0100011110110110
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011110110110, got 0100011110110110
+# flip positions = 101100 0011
+#  
+# original data  0000011001100011
+# clean parity   1100110000111100
+# corrupt parity 1100110100111100
+# got output     0100011001100011
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011001100011, got 0100011001100011
+# flip positions = 100101 1000
+#  
+# original data  0000001000110101
+# clean parity   0100011101001000
+# corrupt parity 0100101101001000
+# got output     1000001001010101
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000001001010101
+# flip positions = 001010 1011
+#  
+# original data  0000011111010011
+# clean parity   1111101000111001
+# corrupt parity 1111100000111001
+# got output     0100011111010011
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011111010011, got 0100011111010011
+# flip positions = 110011 1001
+#  
+# original data  0000001110011110
+# clean parity   0111001011100100
+# corrupt parity 0111001111100100
+# got output     0100001110011110
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001110011110, got 0100001110011110
+# flip positions = 010100 1000
+#  
+# original data  0000011101111000
+# clean parity   1110111010000111
+# corrupt parity 0110111010001111
+# got output     1000001101111001
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000001101111001
+# flip positions = 001111 0011
+#  
+# original data  0000010111110011
+# clean parity   1011111000101000
+# corrupt parity 1011111000101100
+# got output     0100010111110011
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100010111110011, got 0100010111110011
+# flip positions = 111110 0010
+#  
+# program 2 score =    15 out of    15
+# ** Note: $stop    : L:/CSE141L/prog2_tb.sv(109)
+#    Time: 25605 ns  Iteration: 0  Instance: /prog2_tb
+# Break in Module prog2_tb at L:/CSE141L/prog2_tb.sv line 109
+# Compile of prog2_tb.sv was successful.
+run -all
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog2_tb
+run -all
+#  
+# start program 2
+#  
+# original data  0000010000000000
+# clean parity   1000000100010111
+# corrupt parity 1000001100010111
+# got output     0100010000000000
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100010000000000, got 0100010000000000
+# flip positions = 011010 1001
+#  
+# original data  0000000010111001
+# clean parity   0001011110001110
+# corrupt parity 0001011110000110
+# got output     0100000010111001
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100000010111001, got 0100000010111001
+# flip positions = 110100 0011
+#  
+# original data  0000011001100000
+# clean parity   1100110000000000
+# corrupt parity 1100110001000000
+# got output     0100011001100000
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011001100000, got 0100011001100000
+# flip positions = 100011 0110
+#  
+# original data  0000001011011111
+# clean parity   0101101011111111
+# corrupt parity 0101001011110111
+# got output     1000001010011110
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000001010011110
+# flip positions = 001011 0011
+#  
+# original data  0000000101010110
+# clean parity   0010101101110001
+# corrupt parity 0011101101110001
+# got output     0100000101010110
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100000101010110, got 0100000101010110
+# flip positions = 101100 1100
+#  
+# original data  0000001111000110
+# clean parity   0111100001110111
+# corrupt parity 0111110001110111
+# got output     0100001111000110
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001111000110, got 0100001111000110
+# flip positions = 011111 1010
+#  
+# original data  0000000010100101
+# clean parity   0001010001001110
+# corrupt parity 0001010101001110
+# got output     0100000010100101
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100000010100101, got 0100000010100101
+# flip positions = 010010 1000
+#  
+# original data  0000001100010111
+# clean parity   0110001101101100
+# corrupt parity 0110001101101000
+# got output     0100001100010111
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001100010111, got 0100001100010111
+# flip positions = 101000 0010
+#  
+# original data  0000000011001101
+# clean parity   0001100011011011
+# corrupt parity 0001100011011111
+# got output     0100000011001101
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100000011001101, got 0100000011001101
+# flip positions = 111011 0010
+#  
+# original data  0000001111010100
+# clean parity   0111101101000111
+# corrupt parity 0111101101000011
+# got output     0100001111010100
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100001111010100, got 0100001111010100
+# flip positions = 111100 0010
+#  
+# original data  0000011011010011
+# clean parity   1101101100101011
+# corrupt parity 1101101110101011
+# got output     0100011011010011
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011011010011, got 0100011011010011
+# flip positions = 101100 0111
+#  
+# original data  0000011110000011
+# clean parity   1111000000111100
+# corrupt parity 0111000000111100
+# got output     0100011110000011
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100011110000011, got 0100011110000011
+# flip positions = 101010 1111
+#  
+# original data  0000000111101100
+# clean parity   0011110011000011
+# corrupt parity 0011110011100011
+# got output     0100000111101100
+# single error injected, expecting MSBs of output = 2'b01
+# we have a match
+# expected 0100000111101100, got 0100000111101100
+# flip positions = 100010 0101
+#  
+# original data  0000001010000101
+# clean parity   0101000001011111
+# corrupt parity 0101000000011011
+# got output     1000001010000001
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000001010000001
+# flip positions = 000110 0010
+#  
+# original data  0000001101110000
+# clean parity   0110111100000110
+# corrupt parity 0110111100100010
+# got output     1000001101110010
+# two errors injected, expecting MSB of output = 1'b1
+# we have a match
+# expected 1???????????????, got 1000001101110010
+# flip positions = 000010 0101
+#  
+# program 2 score =    15 out of    15
+# ** Note: $stop    : L:/CSE141L/prog2_tb.sv(109)
+#    Time: 27105 ns  Iteration: 0  Instance: /prog2_tb
+# Break in Module prog2_tb at L:/CSE141L/prog2_tb.sv line 109
+quit -sim
+# End time: 09:16:52 on Mar 22,2023, Elapsed time: 0:05:10
+# Errors: 0, Warnings: 1
+# Compile of alu.sv was successful.
+# Compile of control.sv was successful.
+# Compile of dataMem.sv was successful.
+# Compile of instrROM.sv was successful.
+# Compile of PC.sv was successful.
+# Compile of prog1_tb.sv was successful.
+# Compile of prog2_tb.sv was successful.
+# Compile of prog3_tb.sv was successful.
+# Compile of regFile.sv was successful.
+# Compile of topLevel.sv was successful.
+# 10 compiles, 0 failed with no errors.
+vsim -gui work.prog3_tb
+# vsim -gui work.prog3_tb 
+# Start time: 09:19:01 on Mar 22,2023
+# Loading sv_std.std
+# Loading work.prog3_tb
+# Loading work.topLevel
+# Loading work.PC
+# Loading work.instrROM
+# Loading work.control
+# Loading work.regFile
+# Loading work.alu
+# Loading work.dataMem
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   2   2
+# number of bytes w/ at least one pattern =   1   1
+# number of patterns w/ byte crossing     =   6   6
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(62)
+#    Time: 148515 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 62
+# Compile of prog3_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   7   7
+# number of bytes w/ at least one pattern =   5   5
+# number of patterns w/ byte crossing     =  10  10
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(62)
+#    Time: 149295 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 62
+# Compile of prog3_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   5   5
+# number of bytes w/ at least one pattern =   2   2
+# number of patterns w/ byte crossing     =  10  10
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(62)
+#    Time: 149055 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 62
+# Compile of prog3_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   4   4
+# number of bytes w/ at least one pattern =   3   3
+# number of patterns w/ byte crossing     =   8   8
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(62)
+#    Time: 148875 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 62
+# Compile of prog3_tb.sv was successful.
+restart -f
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# Loading work.prog3_tb
+run -all
+#  
+# start program 3
+#  
+# number of patterns w/o byte crossing    =   3   3
+# number of bytes w/ at least one pattern =   3   3
+# number of patterns w/ byte crossing     =   4   4
+# ** Note: $stop    : L:/CSE141L/prog3_tb.sv(62)
+#    Time: 148495 ns  Iteration: 0  Instance: /prog3_tb
+# Break in Module prog3_tb at L:/CSE141L/prog3_tb.sv line 62

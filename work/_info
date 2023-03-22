@@ -1,0 +1,266 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/20.1
+valu
+Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+!s110 1679476731
+!i10b 1
+!s100 HU<CUAgRnbP1:Iz9b:>b?2
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IPiVYaTNG50:O>c26iE0XF2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+S1
+Z3 dL:/CSE141L
+Z4 w1678862895
+8L:/CSE141L/alu.sv
+FL:/CSE141L/alu.sv
+!i122 207
+L0 3 63
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+!s108 1679476731.000000
+!s107 L:/CSE141L/alu.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|L:/CSE141L/alu.sv|
+!i113 1
+Z6 o-work work -sv
+Z7 tCvgOpt 0
+vcontrol
+R0
+Z8 !s110 1679476732
+!i10b 1
+!s100 n;]1S:n[WA2RQYd@ij>9D3
+R1
+IVeT5`]_3bWb`jV87ND51c2
+R2
+S1
+R3
+w1678864052
+8L:/CSE141L/control.sv
+FL:/CSE141L/control.sv
+!i122 208
+L0 2 97
+R5
+r1
+!s85 0
+31
+Z9 !s108 1679476732.000000
+!s107 L:/CSE141L/control.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|L:/CSE141L/control.sv|
+!i113 1
+R6
+R7
+vdataMem
+R0
+R8
+!i10b 1
+!s100 D>Jo``SdL8GKPTo::J`ib3
+R1
+IG;nFTCI1cf<Nek0D8L^143
+R2
+S1
+R3
+w1678863368
+8L:/CSE141L/dataMem.sv
+FL:/CSE141L/dataMem.sv
+!i122 209
+L0 2 18
+R5
+r1
+!s85 0
+31
+R9
+!s107 L:/CSE141L/dataMem.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|L:/CSE141L/dataMem.sv|
+!i113 1
+R6
+R7
+ndata@mem
+vinstrROM
+R0
+R8
+!i10b 1
+!s100 =Rg^H@J7C>o@:RiJ8:TWG0
+R1
+I@nc8iia5?Dm;IG?SBFB<m3
+R2
+S1
+R3
+Z10 w1679362817
+8L:/CSE141L/instrROM.sv
+FL:/CSE141L/instrROM.sv
+!i122 210
+L0 4 19
+R5
+r1
+!s85 0
+31
+R9
+!s107 L:/CSE141L/instrROM.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|L:/CSE141L/instrROM.sv|
+!i113 1
+R6
+R7
+ninstr@r@o@m
+vPC
+R0
+R8
+!i10b 1
+!s100 R_hGDOFR6QBAYVa0[ePK20
+R1
+I_G6c:;XX;WLLc>Q4On;l83
+R2
+S1
+R3
+R4
+8L:/CSE141L/PC.sv
+FL:/CSE141L/PC.sv
+!i122 211
+L0 4 27
+R5
+r1
+!s85 0
+31
+R9
+!s107 L:/CSE141L/PC.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|L:/CSE141L/PC.sv|
+!i113 1
+R6
+R7
+n@p@c
+vprog1_tb
+R0
+Z11 !s110 1679476733
+!i10b 1
+!s100 ngWdOV:8nNVXIFNeWjB1m2
+R1
+IoaaY_d=Rj5omToV]7dPzg1
+R2
+S1
+R3
+w1679476275
+8L:\CSE141L\prog1_tb.sv
+FL:\CSE141L\prog1_tb.sv
+!i122 212
+L0 10 62
+R5
+r1
+!s85 0
+31
+R9
+!s107 L:\CSE141L\prog1_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|L:\CSE141L\prog1_tb.sv|
+!i113 1
+R6
+R7
+vprog2_tb
+R0
+R11
+!i10b 1
+!s100 >X1jWe0I5W8nedISD8o6P3
+R1
+I2:e_Ec>JKb?5D>`VSkln>3
+R2
+S1
+R3
+w1679476599
+8L:/CSE141L/prog2_tb.sv
+FL:/CSE141L/prog2_tb.sv
+!i122 213
+L0 10 108
+R5
+r1
+!s85 0
+31
+Z12 !s108 1679476733.000000
+!s107 L:/CSE141L/prog2_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|L:/CSE141L/prog2_tb.sv|
+!i113 1
+R6
+R7
+vprog3_tb
+R0
+!s110 1679477017
+!i10b 1
+!s100 oPQJG=?N41niUXdS<?CQe0
+R1
+IDbf4Y5Ek5h]M:[LIdZ^^X2
+R2
+S1
+R3
+w1679477010
+8L:/CSE141L/prog3_tb.sv
+FL:/CSE141L/prog3_tb.sv
+!i122 220
+L0 3 68
+R5
+r1
+!s85 0
+31
+!s108 1679477016.000000
+!s107 L:/CSE141L/prog3_tb.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|L:/CSE141L/prog3_tb.sv|
+!i113 1
+R6
+R7
+vregFile
+R0
+R11
+!i10b 1
+!s100 0k^ekeCo2X`[Jm?725Xko3
+R1
+Iej<IL^A@PGa:FNXR3fO7?2
+R2
+S1
+R3
+w1678865932
+8L:/CSE141L/regFile.sv
+FL:/CSE141L/regFile.sv
+!i122 215
+L0 3 45
+R5
+r1
+!s85 0
+31
+R12
+!s107 L:/CSE141L/regFile.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|L:/CSE141L/regFile.sv|
+!i113 1
+R6
+R7
+nreg@file
+vtopLevel
+R0
+R11
+!i10b 1
+!s100 f7OL53f8D>QU<n4[]IG;e3
+R1
+I0^8?J?IRA]8Qf[?8ZWkd<1
+R2
+S1
+R3
+R10
+8L:/CSE141L/topLevel.sv
+FL:/CSE141L/topLevel.sv
+!i122 216
+L0 2 125
+R5
+r1
+!s85 0
+31
+R12
+!s107 L:/CSE141L/topLevel.sv|
+!s90 -reportprogress|300|-work|work|-sv|-stats=none|L:/CSE141L/topLevel.sv|
+!i113 1
+R6
+R7
+ntop@level

@@ -1,0 +1,64 @@
+L:/CSE141L/control.sv {1 {vlog -work work -sv -stats=none L:/CSE141L/control.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module control
+
+Top level modules:
+	control
+
+} {} {}} L:/CSE141L/dataMem.sv {1 {vlog -work work -sv -stats=none L:/CSE141L/dataMem.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module dataMem
+
+Top level modules:
+	dataMem
+
+} {} {}} L:/CSE141L/prog1_tb.sv {1 {vlog -work work -sv -stats=none {L:\CSE141L\prog1_tb.sv}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module prog1_tb
+
+Top level modules:
+	prog1_tb
+
+} {} {}} L:/CSE141L/regFile.sv {1 {vlog -work work -sv -stats=none L:/CSE141L/regFile.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module regFile
+
+Top level modules:
+	regFile
+
+} {} {}} L:/CSE141L/alu.sv {1 {vlog -work work -sv -stats=none L:/CSE141L/alu.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module alu
+
+Top level modules:
+	alu
+
+} {} {}} L:/CSE141L/instrROM.sv {1 {vlog -work work -sv -stats=none L:/CSE141L/instrROM.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module instrROM
+
+Top level modules:
+	instrROM
+
+} {} {}} L:/CSE141L/prog2_tb.sv {1 {vlog -work work -sv -stats=none L:/CSE141L/prog2_tb.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module prog2_tb
+
+Top level modules:
+	prog2_tb
+
+} {} {}} L:/CSE141L/PC.sv {1 {vlog -work work -sv -stats=none L:/CSE141L/PC.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module PC
+
+Top level modules:
+	PC
+
+} {} {}} L:/CSE141L/topLevel.sv {1 {vlog -work work -sv -stats=none L:/CSE141L/topLevel.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module topLevel
+
+Top level modules:
+	topLevel
+
+} {} {}}
