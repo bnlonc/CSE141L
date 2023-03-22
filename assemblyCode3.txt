@@ -88,4 +88,4 @@ Add rMemValue rCount
 Store rCounterIdx rMemValue
 Copy rByteIdx rIdx
 AddI rByteIdx -33
-Branch IfZeroAbs 7 
+Branch IfNotZeroAbs 7 
