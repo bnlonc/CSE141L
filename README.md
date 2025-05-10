@@ -1,4 +1,6 @@
 # CSE141L
+This repo contains my submission for my term project for CSE 141L (Introduction to Computer Architecture Lab) at UCSD. The project requirements are described in `documents/CSE141L_2023_TermProject.pdf`. The goal of the project was to create an instruction set architecture (ISA) purpose-built to handle certain forward error correction workloads, and then to implement that ISA with a processor described in System Verilog. 
+
 The modules used in my processor, the test benches for each program, the code for each program, and the assembler for this project are defined in this repo. 
 
 ## Performance  
